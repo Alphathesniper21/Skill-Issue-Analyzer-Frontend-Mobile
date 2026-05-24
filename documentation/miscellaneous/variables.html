@@ -1,0 +1,522 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>skillissueanalyser documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+          <script>
+              // --- Iframe navigation tracking for Template Playground ---
+              function sendCurrentUrlToParent() {
+                  if (window.parent && window.parent !== window) {
+                      window.parent.postMessage({
+                          type: 'compodoc-iframe-navigate',
+                          url: window.location.pathname + window.location.hash
+                      }, '*');
+                  }
+              }
+              window.addEventListener('hashchange', sendCurrentUrlToParent, false);
+              window.addEventListener('popstate', sendCurrentUrlToParent, false);
+              window.addEventListener('DOMContentLoaded', sendCurrentUrlToParent, false);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="../" class="navbar-brand">skillissueanalyser documentation</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="d-none d-md-block menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content miscellaneous-variables">
+                   <div class="content-data">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Miscellaneous</li>
+  <li class="breadcrumb-item">Variables</li>
+</ol>
+
+<section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <ul class="index-list">
+                        <li>
+                            <a href="#adminGuard" title="src/app/guards/guards.ts" ><b>adminGuard</b>&nbsp;&nbsp;&nbsp;(src/.../guards.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#appConfig" title="src/app/app.config.ts" ><b>appConfig</b>&nbsp;&nbsp;&nbsp;(src/.../app.config.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#authGuard" title="src/app/guards/guards.ts" ><b>authGuard</b>&nbsp;&nbsp;&nbsp;(src/.../guards.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#jwtInterceptor" title="src/app/interceptors/jwt.interceptor.ts" ><b>jwtInterceptor</b>&nbsp;&nbsp;&nbsp;(src/.../jwt.interceptor.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#loginGuard" title="src/app/guards/guards.ts" ><b>loginGuard</b>&nbsp;&nbsp;&nbsp;(src/.../guards.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#routes" title="src/app/app.routes.ts" ><b>routes</b>&nbsp;&nbsp;&nbsp;(src/.../app.routes.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#SEVERIDAD_LABEL" title="src/app/models/analisis.model.ts" ><b>SEVERIDAD_LABEL</b>&nbsp;&nbsp;&nbsp;(src/.../analisis.model.ts)</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+
+    <h3>src/app/guards/guards.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="adminGuard"></a>
+                    <span class="name">
+                        <span ><b>adminGuard</b></span>
+                        <a href="#adminGuard"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>CanActivateFn</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>() &#x3D;&gt; {
+  const auth &#x3D; inject(AuthService);
+  const router &#x3D; inject(Router);
+  if (auth.esAdmin()) return true;
+  if (auth.estaLogueado()) return router.createUrlTree([&#x27;/dashboard&#x27;]);
+  return router.createUrlTree([&#x27;/&#x27;]);
+}</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="authGuard"></a>
+                    <span class="name">
+                        <span ><b>authGuard</b></span>
+                        <a href="#authGuard"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>CanActivateFn</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>() &#x3D;&gt; {
+  const auth &#x3D; inject(AuthService);
+  const router &#x3D; inject(Router);
+  if (auth.estaLogueado()) return true;
+  return router.createUrlTree([&#x27;/&#x27;]);
+}</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Guard funcional de Angular que protege rutas que requieren autenticacion.</p>
+<p>Flujo de decision:</p>
+<ul>
+<li>Si el usuario <strong>esta autenticado</strong> → permite el acceso (<code>true</code>).</li>
+<li>Si el usuario <strong>no esta autenticado</strong> → redirige a la ruta raiz (<code>/</code>).</li>
+</ul>
+<p>Uso en el enrutador:</p>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-ts">{ path: &#39;dashboard&#39;, canActivate: [authGuard] }</code></pre></div></div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="loginGuard"></a>
+                    <span class="name">
+                        <span ><b>loginGuard</b></span>
+                        <a href="#loginGuard"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>CanActivateFn</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>() &#x3D;&gt; {
+  const auth &#x3D; inject(AuthService);
+  const router &#x3D; inject(Router);
+  if (!auth.estaLogueado()) return true;
+  return auth.esAdmin()
+    ? router.createUrlTree([&#x27;/admin&#x27;])
+    : router.createUrlTree([&#x27;/dashboard&#x27;]);
+}</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+</section>
+    <h3>src/app/app.config.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="appConfig"></a>
+                    <span class="name">
+                        <span ><b>appConfig</b></span>
+                        <a href="#appConfig"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>ApplicationConfig</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>{
+  providers: [
+    provideRouter(routes),
+    provideZonelessChangeDetection(),
+    provideHttpClient(withInterceptors([jwtInterceptor])),
+  ],
+}</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+</section>
+    <h3>src/app/interceptors/jwt.interceptor.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="jwtInterceptor"></a>
+                    <span class="name">
+                        <span ><b>jwtInterceptor</b></span>
+                        <a href="#jwtInterceptor"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>HttpInterceptorFn</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>(req, next) &#x3D;&gt; {
+  const auth   &#x3D; inject(AuthService);
+  const router &#x3D; inject(Router);
+  const token  &#x3D; auth.token();
+
+  if (!token || req.url.includes(&#x27;/auth/&#x27;)) return next(req);
+
+  const authReq &#x3D; req.clone({ setHeaders: { Authorization: &#x60;Bearer ${token}&#x60; } });
+  return next(authReq).pipe(
+    catchError(err &#x3D;&gt; {
+      if (err.status &#x3D;&#x3D;&#x3D; 401) { auth.cerrarSesion(); router.navigate([&#x27;/&#x27;]); }
+      return throwError(() &#x3D;&gt; err);
+    })
+  );
+}</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Interceptor funcional de Angular que actua como middleware HTTP para:</p>
+<ol>
+<li><strong>Inyectar el token JWT</strong> en el header <code>Authorization: Bearer &lt;token&gt;</code>
+de todas las peticiones a rutas protegidas.</li>
+<li><strong>Omitir el token</strong> en rutas publicas que contengan <code>/auth/</code> en su URL,
+como los endpoints de login y registro.</li>
+<li><strong>Manejar el error 401</strong> cerrando la sesion automaticamente y redirigiendo
+al usuario a la pantalla de login cuando el token ha expirado o es invalido.</li>
+</ol>
+<p>Se registra globalmente en <a href="../miscellaneous/variables.html#appConfig">appConfig</a> mediante <code>withInterceptors</code>.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+</section>
+    <h3>src/app/app.routes.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="routes"></a>
+                    <span class="name">
+                        <span ><b>routes</b></span>
+                        <a href="#routes"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://angular.io/api/router/Routes" target="_blank" >Routes</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[
+  {
+    path: &#x27;&#x27;,
+    loadComponent: () &#x3D;&gt; &quot;import(&#x27;./home/home&#x27;).then(m &#x3D;&gt; m.Home)&quot;,
+    canActivate: [loginGuard],
+  },
+  {
+    path: &#x27;dashboard&#x27;,
+    loadComponent: () &#x3D;&gt; &quot;import(&#x27;./dashboard/dashboard&#x27;).then(m &#x3D;&gt; m.Dashboard)&quot;,
+    canActivate: [authGuard],
+  },
+  {
+    path: &#x27;historial&#x27;,
+    loadComponent: () &#x3D;&gt; &quot;import(&#x27;./historial/historial&#x27;).then(m &#x3D;&gt; m.Historial)&quot;,
+    canActivate: [authGuard],
+  },
+  {
+    path: &#x27;admin&#x27;,
+    loadComponent: () &#x3D;&gt; &quot;import(&#x27;./admin/admin&#x27;).then(m &#x3D;&gt; m.Admin)&quot;,
+    canActivate: [adminGuard],
+  },
+  { path: &#x27;**&#x27;, redirectTo: &#x27;&#x27; },
+]</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+</section>
+    <h3>src/app/models/analisis.model.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="SEVERIDAD_LABEL"></a>
+                    <span class="name">
+                        <span ><b>SEVERIDAD_LABEL</b></span>
+                        <a href="#SEVERIDAD_LABEL"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../miscellaneous/typealiases.html#Severidad" target="_self" >Record&lt;Severidad, string&gt;</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>{
+  BAJA:    &#x27;Low&#x27;,
+  MEDIA:   &#x27;Medium&#x27;,
+  ALTA:    &#x27;High&#x27;,
+  CRITICA: &#x27;Critical&#x27;,
+}</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+</section>
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'miscellaneous-variables';
+            var COMPODOC_CURRENT_PAGE_URL = 'variables.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

@@ -1,0 +1,163 @@
+<div class="page">
+
+  <!-- Toast -->
+  @if (alerta()) {
+    <div class="toast" [ngClass]="'toast--' + alerta()!.tipo">{{ alerta()!.msg }}</div>
+  }
+
+  <!-- Header -->
+  <div class="dash-header">
+    <div>
+      <p class="dash-header__greet">Hola, <strong>{{ auth.username() }}</strong></p>
+      <p class="dash-header__sub mono">// analyze_code()</p>
+    </div>
+    <div class="dash-header__actions">
+      @if (auth.esAdmin()) {
+        <button class="icon-btn" (click)="irAdmin()" title="Admin">🛡</button>
+      }
+      <button class="icon-btn" (click)="irHistorial()" title="Historial">🕘</button>
+      <button class="icon-btn" (click)="logout()" title="Logout">⏻</button>
+    </div>
+  </div>
+
+  <!-- Source tabs -->
+  <div class="source-tabs card">
+    <button class="source-tab" [class.active]="fuente() === 'zip'"    (click)="fuente.set('zip')">
+      📦 ZIP
+    </button>
+    <button class="source-tab" [class.active]="fuente() === 'github'" (click)="fuente.set('github')">
+      🐙 GitHub
+    </button>
+  </div>
+
+  <!-- ZIP Input -->
+  @if (fuente() === 'zip') {
+    <div class="upload-area card" (click)="fileInput.click()">
+      <input #fileInput type="file" accept=".zip" style="display:none" (change)="onFileChange($event)" />
+      @if (!archivoZip()) {
+        <span class="upload-area__icon">📂</span>
+        <p class="upload-area__title mono">tap to select .zip</p>
+        <p class="upload-area__hint">Archivos Java únicamente</p>
+      } @else {
+        <span class="upload-area__icon">✅</span>
+        <p class="upload-area__title mono">{{ nombreZip() }}</p>
+        <p class="upload-area__hint">{{ (archivoZip()!.size / 1024).toFixed(1) }} KB</p>
+      }
+    </div>
+  }
+
+  <!-- GitHub Input -->
+  @if (fuente() === 'github') {
+    <div class="github-input card">
+      <p class="mono" style="color:var(--text-muted); font-size:12px; margin-bottom:8px;">// repo_url</p>
+      <input class="input" type="url"
+             placeholder="https://github.com/owner/repo"
+             [(ngModel)]="repoUrl"
+             (keydown.enter)="analizar()" />
+    </div>
+  }
+
+  <!-- Action buttons -->
+  <div class="action-row">
+    <button class="btn btn--ghost" (click)="limpiar()">clear</button>
+    <button class="btn btn--primary" style="flex:1" (click)="analizar()" [disabled]="cargando()">
+      @if (cargando()) { <span class="pulsing">scanning...</span> }
+      @else { ▶ run_analysis() }
+    </button>
+  </div>
+
+  <!-- Scanning -->
+  @if (cargando()) {
+    <div class="scanning card">
+      <div class="scan-bar"><div class="scan-fill"></div></div>
+      <p class="mono pulsing" style="text-align:center; color:var(--text-muted); font-size:13px;">
+        analyzing_code()...
+      </p>
+    </div>
+  }
+
+  <!-- Results -->
+  @if (resultado() && !cargando()) {
+    <div class="results">
+
+      <!-- Score card -->
+      <div class="score-card card" [ngClass]="scoreClass(resultado()!.puntuacion)">
+        <div class="score-card__left">
+          <p class="mono" style="font-size:11px; color:var(--text-muted)">skill_issue_score</p>
+          <p class="score-num">{{ resultado()!.puntuacion }}<span style="font-size:16px; color:var(--text-muted)">/100</span></p>
+          <p style="font-size:13px">{{ scoreMsg(resultado()!.puntuacion) }}</p>
+        </div>
+        <div class="score-circle" [ngClass]="scoreClass(resultado()!.puntuacion)">
+          <span>{{ resultado()!.totalProblemas }}</span>
+          <small>issues</small>
+        </div>
+      </div>
+
+      <!-- Severity chips -->
+      <div class="sev-row">
+        <div class="sev-chip sev-chip--critica">
+          <span>{{ porSeveridad(resultado()!.malasPracticas, 'CRITICA').length }}</span>
+          <small>Critical</small>
+        </div>
+        <div class="sev-chip sev-chip--alta">
+          <span>{{ porSeveridad(resultado()!.malasPracticas, 'ALTA').length }}</span>
+          <small>High</small>
+        </div>
+        <div class="sev-chip sev-chip--media">
+          <span>{{ porSeveridad(resultado()!.malasPracticas, 'MEDIA').length }}</span>
+          <small>Med</small>
+        </div>
+        <div class="sev-chip sev-chip--baja">
+          <span>{{ porSeveridad(resultado()!.malasPracticas, 'BAJA').length }}</span>
+          <small>Low</small>
+        </div>
+      </div>
+
+      <!-- Issues list -->
+      @for (p of resultado()!.malasPracticas; track p.linea) {
+        <div class="issue-card card">
+          <div class="issue-card__header">
+            <span class="badge" [ngClass]="'badge--' + p.severidad.toLowerCase()">{{ sevLabel(p.severidad) }}</span>
+            <span class="mono" style="font-size:12px; color:var(--text-muted)">:{{ p.linea }}</span>
+          </div>
+          <p class="issue-card__tipo mono">{{ p.tipo }}</p>
+          <p class="issue-card__desc">{{ p.descripcion }}</p>
+          <p class="issue-card__fix"><span class="mono" style="color:var(--text-muted)">// fix → </span>{{ p.sugerencia }}</p>
+        </div>
+      }
+
+      @if (resultado()!.malasPracticas.length === 0) {
+        <div class="empty-state">
+          <div class="empty-state__icon">✨</div>
+          <p class="empty-state__title">no_issues_found()</p>
+          <p class="empty-state__sub">Tu código está limpio.</p>
+        </div>
+      }
+    </div>
+  }
+
+  <!-- Bottom Nav -->
+  <nav class="bottom-nav">
+    <div class="bottom-nav__items">
+      <button class="nav-item active">
+        <span class="nav-item__icon">⚡</span>
+        <span>Analizar</span>
+      </button>
+      <button class="nav-item" (click)="irHistorial()">
+        <span class="nav-item__icon">🕘</span>
+        <span>Historial</span>
+      </button>
+      @if (auth.esAdmin()) {
+        <button class="nav-item" (click)="irAdmin()">
+          <span class="nav-item__icon">🛡</span>
+          <span>Admin</span>
+        </button>
+      }
+      <button class="nav-item" (click)="logout()">
+        <span class="nav-item__icon">⏻</span>
+        <span>Salir</span>
+      </button>
+    </div>
+  </nav>
+
+</div>

@@ -1,0 +1,155 @@
+<div class="page">
+
+  @if (alerta()) {
+    <div class="toast" [ngClass]="'toast--' + alerta()!.tipo">{{ alerta()!.msg }}</div>
+  }
+
+  <div class="section-header">
+    <p class="section-title mono">// admin_panel</p>
+    <button class="icon-btn" (click)="cargarTodo()">↺</button>
+  </div>
+
+  <!-- Tabs -->
+  <div class="admin-tabs">
+    <button class="admin-tab" [class.active]="tab() === 'stats'"      (click)="tab.set('stats')">📊</button>
+    <button class="admin-tab" [class.active]="tab() === 'usuarios'"   (click)="tab.set('usuarios')">👥</button>
+    <button class="admin-tab" [class.active]="tab() === 'solicitudes'" (click)="tab.set('solicitudes')">
+      🔔
+      @if (solicitudes().length > 0) {
+        <span class="badge-dot">{{ solicitudes().length }}</span>
+      }
+    </button>
+    <button class="admin-tab" [class.active]="tab() === 'analisis'"   (click)="tab.set('analisis')">🔍</button>
+  </div>
+
+  <!-- Stats -->
+  @if (tab() === 'stats') {
+    <div class="stats-grid">
+      <div class="stat-card card">
+        <p class="stat-card__val">{{ stats()?.totalUsuarios ?? '—' }}</p>
+        <p class="stat-card__lbl">Usuarios</p>
+      </div>
+      <div class="stat-card card">
+        <p class="stat-card__val">{{ stats()?.totalAnalisis ?? '—' }}</p>
+        <p class="stat-card__lbl">Análisis</p>
+      </div>
+      <div class="stat-card card">
+        <p class="stat-card__val" style="color:var(--warning)">{{ stats()?.solicitudesPendientes ?? '—' }}</p>
+        <p class="stat-card__lbl">Pendientes</p>
+      </div>
+      <div class="stat-card card">
+        <p class="stat-card__val">{{ stats()?.promedioProblemas ?? '—' }}</p>
+        <p class="stat-card__lbl">Prom. Issues</p>
+      </div>
+    </div>
+  }
+
+  <!-- Usuarios -->
+  @if (tab() === 'usuarios') {
+    <div class="list-section">
+      @for (u of usuarios(); track u.id) {
+        <div class="list-item card">
+          <div class="list-item__main">
+            <div class="list-item__info">
+              <p class="list-item__name">{{ u.nombreCompleto }}</p>
+              <p class="mono" style="font-size:11px; color:var(--text-muted)">@{{ u.username }}</p>
+            </div>
+            <div class="list-item__badges">
+              <span class="pill" [class.pill--admin]="u.rol === 'ADMIN'">{{ u.rol }}</span>
+              <span class="pill" [class.pill--active]="u.activo" [class.pill--inactive]="!u.activo">
+                {{ u.activo ? 'activo' : 'inactivo' }}
+              </span>
+            </div>
+          </div>
+          <div class="list-item__actions">
+            <button class="btn btn--ghost" style="font-size:12px; padding:8px 12px" (click)="toggleEstado(u)">
+              {{ u.activo ? '🔒 Desactivar' : '🔓 Activar' }}
+            </button>
+            <button class="btn btn--danger" style="font-size:12px; padding:8px 12px" (click)="eliminarUsuario(u.id)">
+              🗑 Eliminar
+            </button>
+          </div>
+        </div>
+      }
+      @if (usuarios().length === 0) {
+        <div class="empty-state"><p class="mono">Sin usuarios</p></div>
+      }
+    </div>
+  }
+
+  <!-- Solicitudes -->
+  @if (tab() === 'solicitudes') {
+    <div class="list-section">
+      @for (u of solicitudes(); track u.id) {
+        <div class="list-item card">
+          <div class="list-item__main">
+            <div class="list-item__info">
+              <p class="list-item__name">{{ u.nombreCompleto }}</p>
+              <p style="font-size:12px; color:var(--text-muted)">{{ u.email }}</p>
+              <p class="mono" style="font-size:11px; color:var(--text-muted)">@{{ u.username }}</p>
+            </div>
+          </div>
+          <div class="list-item__actions">
+            <button class="btn btn--success" style="font-size:12px; padding:8px 12px; flex:1" (click)="aprobar(u.id)">
+              ✓ Aprobar
+            </button>
+            <button class="btn btn--danger" style="font-size:12px; padding:8px 12px; flex:1" (click)="rechazar(u.id)">
+              ✕ Rechazar
+            </button>
+          </div>
+        </div>
+      }
+      @if (solicitudes().length === 0) {
+        <div class="empty-state">
+          <div class="empty-state__icon">✅</div>
+          <p class="empty-state__title">Sin solicitudes</p>
+        </div>
+      }
+    </div>
+  }
+
+  <!-- Análisis -->
+  @if (tab() === 'analisis') {
+    <div class="list-section">
+      @for (a of analisis(); track a.id) {
+        <div class="analisis-item card">
+          <div class="analisis-item__header">
+            <span class="mono" style="font-size:12px; color:var(--text-muted)">#{{ a.id }}</span>
+            <span class="badge" [ngClass]="scoreClass(a.puntuacion)">{{ a.puntuacion }}/100</span>
+            <span class="mono" style="font-size:11px; color:var(--text-muted)">@{{ a.nombreUsuarioAutor }}</span>
+          </div>
+          <div class="analisis-item__footer">
+            <span style="font-size:11px; color:var(--text-muted)">{{ fecha(a.fechaAnalisis) }}</span>
+            <span style="font-size:11px; color:var(--danger)">{{ a.totalProblemas }} issues</span>
+          </div>
+        </div>
+      }
+      @if (analisis().length === 0) {
+        <div class="empty-state"><p class="mono">Sin análisis</p></div>
+      }
+    </div>
+  }
+
+  <!-- Bottom Nav -->
+  <nav class="bottom-nav">
+    <div class="bottom-nav__items">
+      <button class="nav-item" (click)="irDashboard()">
+        <span class="nav-item__icon">⚡</span>
+        <span>Analizar</span>
+      </button>
+      <button class="nav-item" (click)="irHistorial()">
+        <span class="nav-item__icon">🕘</span>
+        <span>Historial</span>
+      </button>
+      <button class="nav-item active">
+        <span class="nav-item__icon">🛡</span>
+        <span>Admin</span>
+      </button>
+      <button class="nav-item" (click)="logout()">
+        <span class="nav-item__icon">⏻</span>
+        <span>Salir</span>
+      </button>
+    </div>
+  </nav>
+
+</div>

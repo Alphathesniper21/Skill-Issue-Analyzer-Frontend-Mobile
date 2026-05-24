@@ -1,0 +1,142 @@
+.dash-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 16px 8px;
+}
+.dash-header__greet { font-size: 16px; font-weight: 600; }
+.dash-header__sub   { font-size: 12px; color: var(--text-muted); margin-top: 2px; }
+.dash-header__actions { display: flex; gap: 8px; }
+
+.icon-btn {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.source-tabs {
+  display: flex;
+  gap: 8px;
+  margin: 12px 16px;
+  padding: 6px;
+}
+.source-tab {
+  flex: 1;
+  padding: 12px;
+  border: none;
+  background: transparent;
+  color: var(--text-muted);
+  font-size: 14px;
+  font-weight: 500;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: all .15s;
+  -webkit-tap-highlight-color: transparent;
+}
+.source-tab.active { background: var(--accent); color: #fff; }
+
+.upload-area {
+  margin: 0 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 32px 16px;
+  border: 2px dashed var(--border);
+  text-align: center;
+  cursor: pointer;
+  transition: border-color .15s;
+  -webkit-tap-highlight-color: transparent;
+}
+.upload-area:active { border-color: var(--accent); }
+.upload-area__icon  { font-size: 36px; }
+.upload-area__title { font-size: 14px; color: var(--text-secondary); }
+.upload-area__hint  { font-size: 12px; color: var(--text-muted); }
+
+.github-input { margin: 0 16px; }
+
+.action-row {
+  display: flex;
+  gap: 10px;
+  padding: 12px 16px;
+}
+
+.scanning {
+  margin: 0 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.scan-bar {
+  height: 4px;
+  background: var(--border);
+  border-radius: 99px;
+  overflow: hidden;
+}
+.scan-fill {
+  height: 100%;
+  background: var(--accent);
+  border-radius: 99px;
+  animation: scanAnim 1.4s ease infinite;
+}
+@keyframes scanAnim {
+  0%   { width: 0%; margin-left: 0; }
+  50%  { width: 70%; margin-left: 15%; }
+  100% { width: 0%; margin-left: 100%; }
+}
+
+.results { padding: 0 16px; display: flex; flex-direction: column; gap: 12px; }
+
+.score-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.score-card__left { display: flex; flex-direction: column; gap: 4px; }
+.score-num { font-size: 36px; font-weight: 700; }
+
+.score-circle {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  border: 3px solid currentColor;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.score-circle span { font-size: 20px; font-weight: 700; line-height: 1; }
+.score-circle small { font-size: 10px; color: var(--text-muted); }
+
+.sev-row { display: flex; gap: 8px; }
+.sev-chip {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px 6px;
+  border-radius: var(--radius-sm);
+  border: 1px solid;
+  gap: 2px;
+}
+.sev-chip span  { font-size: 18px; font-weight: 700; }
+.sev-chip small { font-size: 10px; opacity: .8; }
+.sev-chip--critica { background: rgba(239,68,68,.15);  border-color: rgba(239,68,68,.3);  color: #ff6b6b; }
+.sev-chip--alta    { background: rgba(239,68,68,.1);   border-color: rgba(239,68,68,.2);  color: var(--danger); }
+.sev-chip--media   { background: rgba(245,158,11,.1);  border-color: rgba(245,158,11,.2); color: var(--warning); }
+.sev-chip--baja    { background: rgba(34,197,94,.1);   border-color: rgba(34,197,94,.2);  color: var(--success); }
+
+.issue-card { display: flex; flex-direction: column; gap: 6px; }
+.issue-card__header { display: flex; align-items: center; justify-content: space-between; }
+.issue-card__tipo   { font-size: 13px; color: var(--text-secondary); }
+.issue-card__desc   { font-size: 14px; color: var(--text-primary); line-height: 1.4; }
+.issue-card__fix    { font-size: 12px; color: var(--text-muted); line-height: 1.4; }

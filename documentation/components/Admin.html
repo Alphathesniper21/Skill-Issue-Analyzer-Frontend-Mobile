@@ -1,0 +1,2007 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>skillissueanalyser documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+          <script>
+              // --- Iframe navigation tracking for Template Playground ---
+              function sendCurrentUrlToParent() {
+                  if (window.parent && window.parent !== window) {
+                      window.parent.postMessage({
+                          type: 'compodoc-iframe-navigate',
+                          url: window.location.pathname + window.location.hash
+                      }, '*');
+                  }
+              }
+              window.addEventListener('hashchange', sendCurrentUrlToParent, false);
+              window.addEventListener('popstate', sendCurrentUrlToParent, false);
+              window.addEventListener('DOMContentLoaded', sendCurrentUrlToParent, false);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="../" class="navbar-brand">skillissueanalyser documentation</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="d-none d-md-block menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Components</li>
+  <li class="breadcrumb-item"
+  >
+  Admin</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" class="nav-link"
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li class="nav-item">
+            <a href="#templateData" class="nav-link"
+                role="tab" id="templateData-tab" data-bs-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li class="nav-item">
+            <a href="#styleData" class="nav-link"
+                role="tab" id="styleData-tab" data-bs-toggle="tab" data-link="style">Styles</a>
+        </li>
+        <li class="nav-item">
+            <a href="#tree" class="nav-link"
+                role="tab" id="tree-tab" data-bs-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>src/app/admin/admin.ts</code>
+</p>
+
+
+    <p class="comment">
+        <h3>Description</h3>
+    </p>
+    <p class="comment">
+        <p>Funcionalidades:</p>
+<ul>
+<li><strong>Overview</strong>: estadisticas globales del sistema (usuarios, analisis, pendientes, promedio).</li>
+<li><strong>Usuarios</strong>: listado con filtro, activacion/desactivacion y eliminacion de cuentas.</li>
+<li><strong>Solicitudes</strong>: revision y aprobacion/rechazo de solicitudes de rol administrador.</li>
+<li><strong>Analisis</strong>: visualizacion de todos los analisis realizados en el sistema.</li>
+</ul>
+<p>Utiliza <code>ChangeDetectorRef</code> para forzar la deteccion de cambios en modo zoneless.</p>
+
+    </p>
+
+
+    <p class="comment">
+        <h3>Implements</h3>
+    </p>
+    <p class="comment">
+                    <code><a href="https://angular.io/api/core/OnInit" target="_blank" >OnInit</a></code>
+    </p>
+
+
+<section data-compodoc="block-metadata">
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover metadata">
+        <tbody>
+
+
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>app-admin</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">standalone</td>
+                <td class="col-md-9"><code>true</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">imports</td>
+                <td class="col-md-9">
+                                <code><a href="https://angular.io/api/common/CommonModule" target="_blank" >CommonModule</a></code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">styleUrls</td>
+                <td class="col-md-9"><code>./admin.css</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./admin.html</code></td>
+            </tr>
+
+
+
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#alerta" >alerta</a>
+                            </li>
+                            <li>
+                                <a href="#analisis" >analisis</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#auth" >auth</a>
+                            </li>
+                            <li>
+                                <a href="#cargando" >cargando</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#router" >router</a>
+                            </li>
+                            <li>
+                                <a href="#solicitudes" >solicitudes</a>
+                            </li>
+                            <li>
+                                <a href="#stats" >stats</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#svc" >svc</a>
+                            </li>
+                            <li>
+                                <a href="#tab" >tab</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#timer" >timer</a>
+                            </li>
+                            <li>
+                                <a href="#usuarios" >usuarios</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#aprobar" >aprobar</a>
+                            </li>
+                            <li>
+                                <a href="#cargarTodo" >cargarTodo</a>
+                            </li>
+                            <li>
+                                <a href="#eliminarUsuario" >eliminarUsuario</a>
+                            </li>
+                            <li>
+                                <a href="#fecha" >fecha</a>
+                            </li>
+                            <li>
+                                <a href="#irDashboard" >irDashboard</a>
+                            </li>
+                            <li>
+                                <a href="#irHistorial" >irHistorial</a>
+                            </li>
+                            <li>
+                                <a href="#logout" >logout</a>
+                            </li>
+                            <li>
+                                <a href="#ngOnInit" >ngOnInit</a>
+                            </li>
+                            <li>
+                                <a href="#rechazar" >rechazar</a>
+                            </li>
+                            <li>
+                                <a href="#scoreClass" >scoreClass</a>
+                            </li>
+                            <li>
+                                <a href="#toast" >toast</a>
+                            </li>
+                            <li>
+                                <a href="#toggleEstado" >toggleEstado</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+
+
+
+
+
+    <section data-compodoc="block-methods">
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="aprobar"></a>
+                    <span class="name">
+                        <span ><b>aprobar</b></span>
+                        <a href="#aprobar"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>aprobar(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="90"
+                                    class="link-to-prism">src/app/admin/admin.ts:90</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Aprueba la solicitud de administrador del usuario indicado.
+Activa su cuenta, le asigna el rol ADMINISTRADOR y la remueve de la lista de solicitudes.
+Refresca las estadisticas y la lista de usuarios.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>id</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="cargarTodo"></a>
+                    <span class="name">
+                        <span ><b>cargarTodo</b></span>
+                        <a href="#cargarTodo"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>cargarTodo()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="71"
+                                    class="link-to-prism">src/app/admin/admin.ts:71</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Dispara la carga de todas las secciones del panel en paralelo:
+estadisticas, usuarios, solicitudes y analisis.</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="eliminarUsuario"></a>
+                    <span class="name">
+                        <span ><b>eliminarUsuario</b></span>
+                        <a href="#eliminarUsuario"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>eliminarUsuario(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="141"
+                                    class="link-to-prism">src/app/admin/admin.ts:141</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Solicita confirmacion y elimina permanentemente un usuario del sistema.
+Actualiza la lista local filtrando el usuario eliminado y refresca las estadisticas.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>id</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="fecha"></a>
+                    <span class="name">
+                        <span ><b>fecha</b></span>
+                        <a href="#fecha"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>fecha(iso: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="175"
+                                    class="link-to-prism">src/app/admin/admin.ts:175</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Formatea una fecha ISO 8601 al formato legible en espanol: &quot;dd mmm yyyy&quot;.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>iso</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <ul>
+<li>Cadena de fecha en formato ISO 8601 (ej. &quot;2026-05-24T10:30:00&quot;).</li>
+</ul>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>Fecha formateada para mostrar en tablas del panel de administracion.</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="irDashboard"></a>
+                    <span class="name">
+                        <span ><b>irDashboard</b></span>
+                        <a href="#irDashboard"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>irDashboard()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="179"
+                                    class="link-to-prism">src/app/admin/admin.ts:179</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="irHistorial"></a>
+                    <span class="name">
+                        <span ><b>irHistorial</b></span>
+                        <a href="#irHistorial"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>irHistorial()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="180"
+                                    class="link-to-prism">src/app/admin/admin.ts:180</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="logout"></a>
+                    <span class="name">
+                        <span ><b>logout</b></span>
+                        <a href="#logout"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>logout()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="181"
+                                    class="link-to-prism">src/app/admin/admin.ts:181</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngOnInit"></a>
+                    <span class="name">
+                        <span ><b>ngOnInit</b></span>
+                        <a href="#ngOnInit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ngOnInit()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="63"
+                                    class="link-to-prism">src/app/admin/admin.ts:63</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Ciclo de vida Angular: carga todos los datos del panel al inicializar.</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="rechazar"></a>
+                    <span class="name">
+                        <span ><b>rechazar</b></span>
+                        <a href="#rechazar"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>rechazar(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="107"
+                                    class="link-to-prism">src/app/admin/admin.ts:107</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Solicita confirmacion y rechaza la solicitud de administrador del usuario indicado.
+Elimina al solicitante del sistema y lo remueve de la lista de solicitudes.
+Refresca las estadisticas.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>id</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="scoreClass"></a>
+                    <span class="name">
+                        <span ><b>scoreClass</b></span>
+                        <a href="#scoreClass"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>scoreClass(s: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="163"
+                                    class="link-to-prism">src/app/admin/admin.ts:163</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Devuelve la clase CSS correspondiente al puntaje de skill issues de un analisis.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>s</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>&quot;score--critical&quot; | &quot;score--high&quot; | &quot;score--medium&quot; | &quot;score--ok&quot;</code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>Nombre de la clase CSS: &#39;score--critical&#39;, &#39;score--high&#39;, &#39;score--medium&#39; o &#39;score--ok&#39;.</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="toast"></a>
+                    <span class="name">
+                        <span ><b>toast</b></span>
+                        <a href="#toast"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>toast(tipo: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, msg: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="152"
+                                    class="link-to-prism">src/app/admin/admin.ts:152</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>tipo</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>msg</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="toggleEstado"></a>
+                    <span class="name">
+                        <span ><b>toggleEstado</b></span>
+                        <a href="#toggleEstado"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>toggleEstado(u: <a href="../interfaces/Usuario.html" target="_self">Usuario</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="126"
+                                    class="link-to-prism">src/app/admin/admin.ts:126</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Alterna el estado activo/inactivo de un usuario.
+Actualiza el estado localmente sin recargar la lista completa.
+Refresca las estadisticas tras el cambio.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>u</td>
+                                            <td>
+                                                            <code><a href="../interfaces/Usuario.html" target="_self" >Usuario</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <ul>
+<li>El <a href="../interfaces/Usuario.html">Usuario</a> cuyo estado se va a cambiar.</li>
+</ul>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+    <section data-compodoc="block-properties">
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="alerta"></a>
+                    <span class="name">
+                        <span ><b>alerta</b></span>
+                        <a href="#alerta"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>signal&lt;{ tipo: string; msg: string } | null&gt;(null)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="46" class="link-to-prism">src/app/admin/admin.ts:46</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Alerta activa en pantalla, o <code>null</code> si no hay ninguna.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="analisis"></a>
+                    <span class="name">
+                        <span ><b>analisis</b></span>
+                        <a href="#analisis"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>signal&lt;Analisis[]&gt;([])</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="56" class="link-to-prism">src/app/admin/admin.ts:56</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Lista de todos los analisis realizados en el sistema.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="auth"></a>
+                    <span class="name">
+                            <span class="modifier">Readonly</span>
+                        <span ><b>auth</b></span>
+                        <a href="#auth"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>inject(AuthService)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="38" class="link-to-prism">src/app/admin/admin.ts:38</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="cargando"></a>
+                    <span class="name">
+                        <span ><b>cargando</b></span>
+                        <a href="#cargando"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>signal(false)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="44" class="link-to-prism">src/app/admin/admin.ts:44</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Indica si las estadisticas se estan cargando.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="router"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>router</b></span>
+                        <a href="#router"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>inject(Router)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="39" class="link-to-prism">src/app/admin/admin.ts:39</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="solicitudes"></a>
+                    <span class="name">
+                        <span ><b>solicitudes</b></span>
+                        <a href="#solicitudes"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>signal&lt;Usuario[]&gt;([])</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="54" class="link-to-prism">src/app/admin/admin.ts:54</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Lista de solicitudes de rol administrador pendientes de revision.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="stats"></a>
+                    <span class="name">
+                        <span ><b>stats</b></span>
+                        <a href="#stats"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>signal&lt;EstadisticasAdmin | null&gt;(null)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="50" class="link-to-prism">src/app/admin/admin.ts:50</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Estadisticas globales del sistema, o <code>null</code> mientras se cargan.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="svc"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>svc</b></span>
+                        <a href="#svc"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>inject(AdminService)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="37" class="link-to-prism">src/app/admin/admin.ts:37</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="tab"></a>
+                    <span class="name">
+                        <span ><b>tab</b></span>
+                        <a href="#tab"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>signal&lt;Tab&gt;(&#x27;stats&#x27;)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="42" class="link-to-prism">src/app/admin/admin.ts:42</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Pestana activa en el panel.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="timer"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>timer</b></span>
+                        <a href="#timer"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="58" class="link-to-prism">src/app/admin/admin.ts:58</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Referencia al temporizador de autocierre de alertas.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="usuarios"></a>
+                    <span class="name">
+                        <span ><b>usuarios</b></span>
+                        <a href="#usuarios"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>signal&lt;Usuario[]&gt;([])</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="52" class="link-to-prism">src/app/admin/admin.ts:52</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Lista de todos los usuarios registrados en el sistema.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+</section>
+
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, signal, inject, OnInit } from &#x27;@angular/core&#x27;;
+import { CommonModule } from &#x27;@angular/common&#x27;;
+import { Router } from &#x27;@angular/router&#x27;;
+import { AuthService } from &#x27;../services/auth.service&#x27;;
+import { AdminService, EstadisticasAdmin } from &#x27;../services/admin.service&#x27;;
+import { Usuario } from &#x27;../models/usuario.model&#x27;;
+import { Analisis, SEVERIDAD_LABEL, Severidad } from &#x27;../models/analisis.model&#x27;;
+
+/** Pestanas disponibles en el panel de administracion. */
+type Tab &#x3D; &#x27;stats&#x27; | &#x27;usuarios&#x27; | &#x27;solicitudes&#x27; | &#x27;analisis&#x27;;
+
+/**
+ * @class AdminPanel
+ * @description Componente standalone del panel de administracion.
+ *
+ * Funcionalidades:
+ * - **Overview**: estadisticas globales del sistema (usuarios, analisis, pendientes, promedio).
+ * - **Usuarios**: listado con filtro, activacion/desactivacion y eliminacion de cuentas.
+ * - **Solicitudes**: revision y aprobacion/rechazo de solicitudes de rol administrador.
+ * - **Analisis**: visualizacion de todos los analisis realizados en el sistema.
+ *
+ * Utiliza &#x60;ChangeDetectorRef&#x60; para forzar la deteccion de cambios en modo zoneless.
+ */
+@Component({
+  selector: &#x27;app-admin&#x27;,
+  standalone: true,
+  imports: [CommonModule],
+  templateUrl: &#x27;./admin.html&#x27;,
+  styleUrls: [&#x27;./admin.css&#x27;],
+})
+export class Admin implements OnInit {
+  private svc    &#x3D; inject(AdminService);
+  readonly auth  &#x3D; inject(AuthService);
+  private router &#x3D; inject(Router);
+
+  /** Pestana activa en el panel. */
+  tab          &#x3D; signal&lt;Tab&gt;(&#x27;stats&#x27;);
+  /** Indica si las estadisticas se estan cargando. */
+  cargando     &#x3D; signal(false);
+  /** Alerta activa en pantalla, o &#x60;null&#x60; si no hay ninguna. */
+  alerta       &#x3D; signal&lt;{ tipo: string; msg: string } | null&gt;(null);
+
+  // ── Data ──────────────────────────────────────────────────────────────────
+  /** Estadisticas globales del sistema, o &#x60;null&#x60; mientras se cargan. */
+  stats        &#x3D; signal&lt;EstadisticasAdmin | null&gt;(null);
+  /** Lista de todos los usuarios registrados en el sistema. */
+  usuarios     &#x3D; signal&lt;Usuario[]&gt;([]);
+  /** Lista de solicitudes de rol administrador pendientes de revision. */
+  solicitudes  &#x3D; signal&lt;Usuario[]&gt;([]);
+  /** Lista de todos los analisis realizados en el sistema. */
+  analisis     &#x3D; signal&lt;Analisis[]&gt;([]);
+  /** Referencia al temporizador de autocierre de alertas. */
+  private timer: any;
+
+  /**
+   * Ciclo de vida Angular: carga todos los datos del panel al inicializar.
+   */
+  ngOnInit() { this.cargarTodo(); }
+
+  // ── Carga ─────────────────────────────────────────────────────────────────
+
+  /**
+   * Dispara la carga de todas las secciones del panel en paralelo:
+   * estadisticas, usuarios, solicitudes y analisis.
+   */
+  cargarTodo() {
+    this.cargando.set(true);
+    let pending &#x3D; 4;
+    const done &#x3D; () &#x3D;&gt; { if (--pending &#x3D;&#x3D;&#x3D; 0) this.cargando.set(false); };
+
+    this.svc.getEstadisticas().subscribe({ next: r &#x3D;&gt; { this.stats.set(r); done(); }, error: done });
+    this.svc.getUsuarios().subscribe({ next: r &#x3D;&gt; { this.usuarios.set(r); done(); }, error: done });
+    this.svc.getSolicitudesPendientes().subscribe({ next: r &#x3D;&gt; { this.solicitudes.set(r); done(); }, error: done });
+    this.svc.getTodosAnalisis().subscribe({ next: r &#x3D;&gt; { this.analisis.set(r); done(); }, error: done });
+  }
+// ── Acciones sobre solicitudes ────────────────────────────────────────────
+
+  /**
+   * Aprueba la solicitud de administrador del usuario indicado.
+   * Activa su cuenta, le asigna el rol ADMINISTRADOR y la remueve de la lista de solicitudes.
+   * Refresca las estadisticas y la lista de usuarios.
+   *
+   * @param s - El {@link Usuario} solicitante a aprobar.
+   */
+  aprobar(id: number) {
+    this.svc.aprobarSolicitud(id).subscribe({
+      next: () &#x3D;&gt; {
+        this.solicitudes.set(this.solicitudes().filter(u &#x3D;&gt; u.id !&#x3D;&#x3D; id));
+        this.toast(&#x27;success&#x27;, &#x27;Solicitud aprobada.&#x27;);
+        this.cargarTodo();
+      },
+      error: () &#x3D;&gt; this.toast(&#x27;error&#x27;, &#x27;Error al aprobar.&#x27;),
+    });
+  }
+  /**
+   * Solicita confirmacion y rechaza la solicitud de administrador del usuario indicado.
+   * Elimina al solicitante del sistema y lo remueve de la lista de solicitudes.
+   * Refresca las estadisticas.
+   *
+   * @param s - El {@link Usuario} solicitante a rechazar.
+   */
+  rechazar(id: number) {
+    if (!confirm(&#x27;¿Rechazar esta solicitud?&#x27;)) return;
+    this.svc.rechazarSolicitud(id).subscribe({
+      next: () &#x3D;&gt; {
+        this.solicitudes.set(this.solicitudes().filter(u &#x3D;&gt; u.id !&#x3D;&#x3D; id));
+        this.toast(&#x27;success&#x27;, &#x27;Solicitud rechazada.&#x27;);
+      },
+      error: () &#x3D;&gt; this.toast(&#x27;error&#x27;, &#x27;Error al rechazar.&#x27;),
+    });
+  }
+// ── Acciones sobre usuarios ───────────────────────────────────────────────
+
+  /**
+   * Alterna el estado activo/inactivo de un usuario.
+   * Actualiza el estado localmente sin recargar la lista completa.
+   * Refresca las estadisticas tras el cambio.
+   *
+   * @param u - El {@link Usuario} cuyo estado se va a cambiar.
+   */
+  toggleEstado(u: Usuario) {
+    this.svc.cambiarEstado(u.id, !u.activo).subscribe({
+      next: () &#x3D;&gt; {
+        this.usuarios.set(this.usuarios().map(x &#x3D;&gt; x.id &#x3D;&#x3D;&#x3D; u.id ? { ...x, activo: !x.activo } : x));
+        this.toast(&#x27;success&#x27;, &#x60;Usuario ${!u.activo ? &#x27;activado&#x27; : &#x27;desactivado&#x27;}.&#x60;);
+      },
+      error: () &#x3D;&gt; this.toast(&#x27;error&#x27;, &#x27;Error al cambiar estado.&#x27;),
+    });
+  }
+  /**
+   * Solicita confirmacion y elimina permanentemente un usuario del sistema.
+   * Actualiza la lista local filtrando el usuario eliminado y refresca las estadisticas.
+   *
+   * @param u - El {@link Usuario} a eliminar.
+   */
+  eliminarUsuario(id: number) {
+    if (!confirm(&#x27;¿Eliminar este usuario?&#x27;)) return;
+    this.svc.eliminarUsuario(id).subscribe({
+      next: () &#x3D;&gt; {
+        this.usuarios.set(this.usuarios().filter(u &#x3D;&gt; u.id !&#x3D;&#x3D; id));
+        this.toast(&#x27;success&#x27;, &#x27;Usuario eliminado.&#x27;);
+      },
+      error: () &#x3D;&gt; this.toast(&#x27;error&#x27;, &#x27;Error al eliminar.&#x27;),
+    });
+  }
+
+  toast(tipo: string, msg: string) {
+    if (this.timer) clearTimeout(this.timer);
+    this.alerta.set({ tipo, msg });
+    this.timer &#x3D; setTimeout(() &#x3D;&gt; this.alerta.set(null), 3500);
+  }
+  /**
+   * Devuelve la clase CSS correspondiente al puntaje de skill issues de un analisis.
+   *
+   * @param score - Puntaje numerico del analisis (0-100+).
+   * @returns Nombre de la clase CSS: &#x27;score--critical&#x27;, &#x27;score--high&#x27;, &#x27;score--medium&#x27; o &#x27;score--ok&#x27;.
+   */
+  scoreClass(s: number) {
+    if (s &gt;&#x3D; 70) return &#x27;score--critical&#x27;;
+    if (s &gt;&#x3D; 40) return &#x27;score--high&#x27;;
+    if (s &gt;&#x3D; 15) return &#x27;score--medium&#x27;;
+    return &#x27;score--ok&#x27;;
+  }
+  /**
+   * Formatea una fecha ISO 8601 al formato legible en espanol: &quot;dd mmm yyyy&quot;.
+   *
+   * @param iso - Cadena de fecha en formato ISO 8601 (ej. &quot;2026-05-24T10:30:00&quot;).
+   * @returns Fecha formateada para mostrar en tablas del panel de administracion.
+   */
+  fecha(iso: string) {
+    return new Date(iso).toLocaleDateString(&#x27;es&#x27;, { day: &#x27;2-digit&#x27;, month: &#x27;short&#x27;, year: &#x27;numeric&#x27; });
+  }
+
+  irDashboard() { this.router.navigate([&#x27;/dashboard&#x27;]); }
+  irHistorial() { this.router.navigate([&#x27;/historial&#x27;]); }
+  logout()      { this.auth.cerrarSesion(); this.router.navigate([&#x27;/&#x27;]); }
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;div class&#x3D;&quot;page&quot;&gt;
+
+  @if (alerta()) {
+    &lt;div class&#x3D;&quot;toast&quot; [ngClass]&#x3D;&quot;&#x27;toast--&#x27; + alerta()!.tipo&quot;&gt;{{ alerta()!.msg }}&lt;/div&gt;
+  }
+
+  &lt;div class&#x3D;&quot;section-header&quot;&gt;
+    &lt;p class&#x3D;&quot;section-title mono&quot;&gt;// admin_panel&lt;/p&gt;
+    &lt;button class&#x3D;&quot;icon-btn&quot; (click)&#x3D;&quot;cargarTodo()&quot;&gt;↺&lt;/button&gt;
+  &lt;/div&gt;
+
+  &lt;!-- Tabs --&gt;
+  &lt;div class&#x3D;&quot;admin-tabs&quot;&gt;
+    &lt;button class&#x3D;&quot;admin-tab&quot; [class.active]&#x3D;&quot;tab() &#x3D;&#x3D;&#x3D; &#x27;stats&#x27;&quot;      (click)&#x3D;&quot;tab.set(&#x27;stats&#x27;)&quot;&gt;📊&lt;/button&gt;
+    &lt;button class&#x3D;&quot;admin-tab&quot; [class.active]&#x3D;&quot;tab() &#x3D;&#x3D;&#x3D; &#x27;usuarios&#x27;&quot;   (click)&#x3D;&quot;tab.set(&#x27;usuarios&#x27;)&quot;&gt;👥&lt;/button&gt;
+    &lt;button class&#x3D;&quot;admin-tab&quot; [class.active]&#x3D;&quot;tab() &#x3D;&#x3D;&#x3D; &#x27;solicitudes&#x27;&quot; (click)&#x3D;&quot;tab.set(&#x27;solicitudes&#x27;)&quot;&gt;
+      🔔
+      @if (solicitudes().length &gt; 0) {
+        &lt;span class&#x3D;&quot;badge-dot&quot;&gt;{{ solicitudes().length }}&lt;/span&gt;
+      }
+    &lt;/button&gt;
+    &lt;button class&#x3D;&quot;admin-tab&quot; [class.active]&#x3D;&quot;tab() &#x3D;&#x3D;&#x3D; &#x27;analisis&#x27;&quot;   (click)&#x3D;&quot;tab.set(&#x27;analisis&#x27;)&quot;&gt;🔍&lt;/button&gt;
+  &lt;/div&gt;
+
+  &lt;!-- Stats --&gt;
+  @if (tab() &#x3D;&#x3D;&#x3D; &#x27;stats&#x27;) {
+    &lt;div class&#x3D;&quot;stats-grid&quot;&gt;
+      &lt;div class&#x3D;&quot;stat-card card&quot;&gt;
+        &lt;p class&#x3D;&quot;stat-card__val&quot;&gt;{{ stats()?.totalUsuarios ?? &#x27;—&#x27; }}&lt;/p&gt;
+        &lt;p class&#x3D;&quot;stat-card__lbl&quot;&gt;Usuarios&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div class&#x3D;&quot;stat-card card&quot;&gt;
+        &lt;p class&#x3D;&quot;stat-card__val&quot;&gt;{{ stats()?.totalAnalisis ?? &#x27;—&#x27; }}&lt;/p&gt;
+        &lt;p class&#x3D;&quot;stat-card__lbl&quot;&gt;Análisis&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div class&#x3D;&quot;stat-card card&quot;&gt;
+        &lt;p class&#x3D;&quot;stat-card__val&quot; style&#x3D;&quot;color:var(--warning)&quot;&gt;{{ stats()?.solicitudesPendientes ?? &#x27;—&#x27; }}&lt;/p&gt;
+        &lt;p class&#x3D;&quot;stat-card__lbl&quot;&gt;Pendientes&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div class&#x3D;&quot;stat-card card&quot;&gt;
+        &lt;p class&#x3D;&quot;stat-card__val&quot;&gt;{{ stats()?.promedioProblemas ?? &#x27;—&#x27; }}&lt;/p&gt;
+        &lt;p class&#x3D;&quot;stat-card__lbl&quot;&gt;Prom. Issues&lt;/p&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  }
+
+  &lt;!-- Usuarios --&gt;
+  @if (tab() &#x3D;&#x3D;&#x3D; &#x27;usuarios&#x27;) {
+    &lt;div class&#x3D;&quot;list-section&quot;&gt;
+      @for (u of usuarios(); track u.id) {
+        &lt;div class&#x3D;&quot;list-item card&quot;&gt;
+          &lt;div class&#x3D;&quot;list-item__main&quot;&gt;
+            &lt;div class&#x3D;&quot;list-item__info&quot;&gt;
+              &lt;p class&#x3D;&quot;list-item__name&quot;&gt;{{ u.nombreCompleto }}&lt;/p&gt;
+              &lt;p class&#x3D;&quot;mono&quot; style&#x3D;&quot;font-size:11px; color:var(--text-muted)&quot;&gt;@{{ u.username }}&lt;/p&gt;
+            &lt;/div&gt;
+            &lt;div class&#x3D;&quot;list-item__badges&quot;&gt;
+              &lt;span class&#x3D;&quot;pill&quot; [class.pill--admin]&#x3D;&quot;u.rol &#x3D;&#x3D;&#x3D; &#x27;ADMIN&#x27;&quot;&gt;{{ u.rol }}&lt;/span&gt;
+              &lt;span class&#x3D;&quot;pill&quot; [class.pill--active]&#x3D;&quot;u.activo&quot; [class.pill--inactive]&#x3D;&quot;!u.activo&quot;&gt;
+                {{ u.activo ? &#x27;activo&#x27; : &#x27;inactivo&#x27; }}
+              &lt;/span&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+          &lt;div class&#x3D;&quot;list-item__actions&quot;&gt;
+            &lt;button class&#x3D;&quot;btn btn--ghost&quot; style&#x3D;&quot;font-size:12px; padding:8px 12px&quot; (click)&#x3D;&quot;toggleEstado(u)&quot;&gt;
+              {{ u.activo ? &#x27;🔒 Desactivar&#x27; : &#x27;🔓 Activar&#x27; }}
+            &lt;/button&gt;
+            &lt;button class&#x3D;&quot;btn btn--danger&quot; style&#x3D;&quot;font-size:12px; padding:8px 12px&quot; (click)&#x3D;&quot;eliminarUsuario(u.id)&quot;&gt;
+              🗑 Eliminar
+            &lt;/button&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+      }
+      @if (usuarios().length &#x3D;&#x3D;&#x3D; 0) {
+        &lt;div class&#x3D;&quot;empty-state&quot;&gt;&lt;p class&#x3D;&quot;mono&quot;&gt;Sin usuarios&lt;/p&gt;&lt;/div&gt;
+      }
+    &lt;/div&gt;
+  }
+
+  &lt;!-- Solicitudes --&gt;
+  @if (tab() &#x3D;&#x3D;&#x3D; &#x27;solicitudes&#x27;) {
+    &lt;div class&#x3D;&quot;list-section&quot;&gt;
+      @for (u of solicitudes(); track u.id) {
+        &lt;div class&#x3D;&quot;list-item card&quot;&gt;
+          &lt;div class&#x3D;&quot;list-item__main&quot;&gt;
+            &lt;div class&#x3D;&quot;list-item__info&quot;&gt;
+              &lt;p class&#x3D;&quot;list-item__name&quot;&gt;{{ u.nombreCompleto }}&lt;/p&gt;
+              &lt;p style&#x3D;&quot;font-size:12px; color:var(--text-muted)&quot;&gt;{{ u.email }}&lt;/p&gt;
+              &lt;p class&#x3D;&quot;mono&quot; style&#x3D;&quot;font-size:11px; color:var(--text-muted)&quot;&gt;@{{ u.username }}&lt;/p&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+          &lt;div class&#x3D;&quot;list-item__actions&quot;&gt;
+            &lt;button class&#x3D;&quot;btn btn--success&quot; style&#x3D;&quot;font-size:12px; padding:8px 12px; flex:1&quot; (click)&#x3D;&quot;aprobar(u.id)&quot;&gt;
+              ✓ Aprobar
+            &lt;/button&gt;
+            &lt;button class&#x3D;&quot;btn btn--danger&quot; style&#x3D;&quot;font-size:12px; padding:8px 12px; flex:1&quot; (click)&#x3D;&quot;rechazar(u.id)&quot;&gt;
+              ✕ Rechazar
+            &lt;/button&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+      }
+      @if (solicitudes().length &#x3D;&#x3D;&#x3D; 0) {
+        &lt;div class&#x3D;&quot;empty-state&quot;&gt;
+          &lt;div class&#x3D;&quot;empty-state__icon&quot;&gt;✅&lt;/div&gt;
+          &lt;p class&#x3D;&quot;empty-state__title&quot;&gt;Sin solicitudes&lt;/p&gt;
+        &lt;/div&gt;
+      }
+    &lt;/div&gt;
+  }
+
+  &lt;!-- Análisis --&gt;
+  @if (tab() &#x3D;&#x3D;&#x3D; &#x27;analisis&#x27;) {
+    &lt;div class&#x3D;&quot;list-section&quot;&gt;
+      @for (a of analisis(); track a.id) {
+        &lt;div class&#x3D;&quot;analisis-item card&quot;&gt;
+          &lt;div class&#x3D;&quot;analisis-item__header&quot;&gt;
+            &lt;span class&#x3D;&quot;mono&quot; style&#x3D;&quot;font-size:12px; color:var(--text-muted)&quot;&gt;#{{ a.id }}&lt;/span&gt;
+            &lt;span class&#x3D;&quot;badge&quot; [ngClass]&#x3D;&quot;scoreClass(a.puntuacion)&quot;&gt;{{ a.puntuacion }}/100&lt;/span&gt;
+            &lt;span class&#x3D;&quot;mono&quot; style&#x3D;&quot;font-size:11px; color:var(--text-muted)&quot;&gt;@{{ a.nombreUsuarioAutor }}&lt;/span&gt;
+          &lt;/div&gt;
+          &lt;div class&#x3D;&quot;analisis-item__footer&quot;&gt;
+            &lt;span style&#x3D;&quot;font-size:11px; color:var(--text-muted)&quot;&gt;{{ fecha(a.fechaAnalisis) }}&lt;/span&gt;
+            &lt;span style&#x3D;&quot;font-size:11px; color:var(--danger)&quot;&gt;{{ a.totalProblemas }} issues&lt;/span&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+      }
+      @if (analisis().length &#x3D;&#x3D;&#x3D; 0) {
+        &lt;div class&#x3D;&quot;empty-state&quot;&gt;&lt;p class&#x3D;&quot;mono&quot;&gt;Sin análisis&lt;/p&gt;&lt;/div&gt;
+      }
+    &lt;/div&gt;
+  }
+
+  &lt;!-- Bottom Nav --&gt;
+  &lt;nav class&#x3D;&quot;bottom-nav&quot;&gt;
+    &lt;div class&#x3D;&quot;bottom-nav__items&quot;&gt;
+      &lt;button class&#x3D;&quot;nav-item&quot; (click)&#x3D;&quot;irDashboard()&quot;&gt;
+        &lt;span class&#x3D;&quot;nav-item__icon&quot;&gt;⚡&lt;/span&gt;
+        &lt;span&gt;Analizar&lt;/span&gt;
+      &lt;/button&gt;
+      &lt;button class&#x3D;&quot;nav-item&quot; (click)&#x3D;&quot;irHistorial()&quot;&gt;
+        &lt;span class&#x3D;&quot;nav-item__icon&quot;&gt;🕘&lt;/span&gt;
+        &lt;span&gt;Historial&lt;/span&gt;
+      &lt;/button&gt;
+      &lt;button class&#x3D;&quot;nav-item active&quot;&gt;
+        &lt;span class&#x3D;&quot;nav-item__icon&quot;&gt;🛡&lt;/span&gt;
+        &lt;span&gt;Admin&lt;/span&gt;
+      &lt;/button&gt;
+      &lt;button class&#x3D;&quot;nav-item&quot; (click)&#x3D;&quot;logout()&quot;&gt;
+        &lt;span class&#x3D;&quot;nav-item__icon&quot;&gt;⏻&lt;/span&gt;
+        &lt;span&gt;Salir&lt;/span&gt;
+      &lt;/button&gt;
+    &lt;/div&gt;
+  &lt;/nav&gt;
+
+&lt;/div&gt;
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="styleData">
+                <p class="comment">
+                    <code>./admin.css</code>
+                </p>
+                <pre class="line-numbers"><code class="language-scss">.icon-btn {
+  width: 40px; height: 40px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 18px;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.admin-tabs {
+  display: flex;
+  gap: 8px;
+  padding: 0 16px 16px;
+}
+.admin-tab {
+  flex: 1;
+  padding: 12px 8px;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  font-size: 18px;
+  cursor: pointer;
+  position: relative;
+  -webkit-tap-highlight-color: transparent;
+  transition: all .15s;
+}
+.admin-tab.active {
+  border-color: var(--accent);
+  background: var(--accent-soft);
+}
+.badge-dot {
+  position: absolute;
+  top: 4px; right: 4px;
+  background: var(--danger);
+  color: #fff;
+  font-size: 9px;
+  font-weight: 700;
+  min-width: 16px;
+  height: 16px;
+  border-radius: 99px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 3px;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  padding: 0 16px;
+}
+.stat-card { text-align: center; padding: 20px 12px; }
+.stat-card__val { font-size: 32px; font-weight: 700; color: var(--accent); }
+.stat-card__lbl { font-size: 12px; color: var(--text-muted); margin-top: 4px; }
+
+.list-section {
+  padding: 0 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.list-item { display: flex; flex-direction: column; gap: 10px; }
+.list-item__main { display: flex; justify-content: space-between; align-items: flex-start; gap: 8px; }
+.list-item__info { flex: 1; }
+.list-item__name { font-size: 15px; font-weight: 600; }
+.list-item__badges { display: flex; flex-direction: column; gap: 4px; align-items: flex-end; }
+.list-item__actions { display: flex; gap: 8px; }
+
+.pill {
+  padding: 3px 8px;
+  border-radius: 99px;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: .04em;
+}
+.pill--admin    { background: var(--accent-soft); color: var(--accent); }
+.pill--active   { background: rgba(34,197,94,.15);  color: var(--success); }
+.pill--inactive { background: rgba(239,68,68,.15);  color: var(--danger); }
+
+.analisis-item { display: flex; flex-direction: column; gap: 8px; }
+.analisis-item__header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.analisis-item__footer {
+  display: flex;
+  justify-content: space-between;
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis-network.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><div class="page">  @if (alerta()) {    <div class="toast" [ngClass]="\'toast--\' + alerta()!.tipo">{{ alerta()!.msg }}</div>  }  <div class="section-header">    <p class="section-title mono">// admin_panel</p>    <button class="icon-btn" (click)="cargarTodo()">↺</button>  </div>  <!-- Tabs -->  <div class="admin-tabs">    <button class="admin-tab" [class.active]="tab() === \'stats\'"      (click)="tab.set(\'stats\')">📊</button>    <button class="admin-tab" [class.active]="tab() === \'usuarios\'"   (click)="tab.set(\'usuarios\')">👥</button>    <button class="admin-tab" [class.active]="tab() === \'solicitudes\'" (click)="tab.set(\'solicitudes\')">      🔔      @if (solicitudes().length > 0) {        <span class="badge-dot">{{ solicitudes().length }}</span>      }    </button>    <button class="admin-tab" [class.active]="tab() === \'analisis\'"   (click)="tab.set(\'analisis\')">🔍</button>  </div>  <!-- Stats -->  @if (tab() === \'stats\') {    <div class="stats-grid">      <div class="stat-card card">        <p class="stat-card__val">{{ stats()?.totalUsuarios ?? \'—\' }}</p>        <p class="stat-card__lbl">Usuarios</p>      </div>      <div class="stat-card card">        <p class="stat-card__val">{{ stats()?.totalAnalisis ?? \'—\' }}</p>        <p class="stat-card__lbl">Análisis</p>      </div>      <div class="stat-card card">        <p class="stat-card__val" style="color:var(--warning)">{{ stats()?.solicitudesPendientes ?? \'—\' }}</p>        <p class="stat-card__lbl">Pendientes</p>      </div>      <div class="stat-card card">        <p class="stat-card__val">{{ stats()?.promedioProblemas ?? \'—\' }}</p>        <p class="stat-card__lbl">Prom. Issues</p>      </div>    </div>  }  <!-- Usuarios -->  @if (tab() === \'usuarios\') {    <div class="list-section">      @for (u of usuarios(); track u.id) {        <div class="list-item card">          <div class="list-item__main">            <div class="list-item__info">              <p class="list-item__name">{{ u.nombreCompleto }}</p>              <p class="mono" style="font-size:11px; color:var(--text-muted)">@{{ u.username }}</p>            </div>            <div class="list-item__badges">              <span class="pill" [class.pill--admin]="u.rol === \'ADMIN\'">{{ u.rol }}</span>              <span class="pill" [class.pill--active]="u.activo" [class.pill--inactive]="!u.activo">                {{ u.activo ? \'activo\' : \'inactivo\' }}              </span>            </div>          </div>          <div class="list-item__actions">            <button class="btn btn--ghost" style="font-size:12px; padding:8px 12px" (click)="toggleEstado(u)">              {{ u.activo ? \'🔒 Desactivar\' : \'🔓 Activar\' }}            </button>            <button class="btn btn--danger" style="font-size:12px; padding:8px 12px" (click)="eliminarUsuario(u.id)">              🗑 Eliminar            </button>          </div>        </div>      }      @if (usuarios().length === 0) {        <div class="empty-state"><p class="mono">Sin usuarios</p></div>      }    </div>  }  <!-- Solicitudes -->  @if (tab() === \'solicitudes\') {    <div class="list-section">      @for (u of solicitudes(); track u.id) {        <div class="list-item card">          <div class="list-item__main">            <div class="list-item__info">              <p class="list-item__name">{{ u.nombreCompleto }}</p>              <p style="font-size:12px; color:var(--text-muted)">{{ u.email }}</p>              <p class="mono" style="font-size:11px; color:var(--text-muted)">@{{ u.username }}</p>            </div>          </div>          <div class="list-item__actions">            <button class="btn btn--success" style="font-size:12px; padding:8px 12px; flex:1" (click)="aprobar(u.id)">              ✓ Aprobar            </button>            <button class="btn btn--danger" style="font-size:12px; padding:8px 12px; flex:1" (click)="rechazar(u.id)">              ✕ Rechazar            </button>          </div>        </div>      }      @if (solicitudes().length === 0) {        <div class="empty-state">          <div class="empty-state__icon">✅</div>          <p class="empty-state__title">Sin solicitudes</p>        </div>      }    </div>  }  <!-- Análisis -->  @if (tab() === \'analisis\') {    <div class="list-section">      @for (a of analisis(); track a.id) {        <div class="analisis-item card">          <div class="analisis-item__header">            <span class="mono" style="font-size:12px; color:var(--text-muted)">#{{ a.id }}</span>            <span class="badge" [ngClass]="scoreClass(a.puntuacion)">{{ a.puntuacion }}/100</span>            <span class="mono" style="font-size:11px; color:var(--text-muted)">@{{ a.nombreUsuarioAutor }}</span>          </div>          <div class="analisis-item__footer">            <span style="font-size:11px; color:var(--text-muted)">{{ fecha(a.fechaAnalisis) }}</span>            <span style="font-size:11px; color:var(--danger)">{{ a.totalProblemas }} issues</span>          </div>        </div>      }      @if (analisis().length === 0) {        <div class="empty-state"><p class="mono">Sin análisis</p></div>      }    </div>  }  <!-- Bottom Nav -->  <nav class="bottom-nav">    <div class="bottom-nav__items">      <button class="nav-item" (click)="irDashboard()">        <span class="nav-item__icon">⚡</span>        <span>Analizar</span>      </button>      <button class="nav-item" (click)="irHistorial()">        <span class="nav-item__icon">🕘</span>        <span>Historial</span>      </button>      <button class="nav-item active">        <span class="nav-item__icon">🛡</span>        <span>Admin</span>      </button>      <button class="nav-item" (click)="logout()">        <span class="nav-item__icon">⏻</span>        <span>Salir</span>      </button>    </div>  </nav></div></div>'
+    var COMPONENTS = [{'name': 'Admin', 'selector': 'app-admin'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'Dashboard', 'selector': 'app-dashboard'},{'name': 'Historial', 'selector': 'app-historial'},{'name': 'Home', 'selector': 'app-home'}];
+    var DIRECTIVES = [];
+    var ACTUAL_COMPONENT = {'name': 'Admin'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'Admin.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

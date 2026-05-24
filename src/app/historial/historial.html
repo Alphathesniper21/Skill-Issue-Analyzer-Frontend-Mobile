@@ -1,0 +1,105 @@
+<div class="page">
+
+  @if (alerta()) {
+    <div class="toast" [ngClass]="'toast--' + alerta()!.tipo">{{ alerta()!.msg }}</div>
+  }
+
+  <div class="section-header">
+    <div>
+      <p class="section-title mono">// mis_análisis</p>
+      <p style="font-size:12px; color:var(--text-muted)">{{ lista().length }} registros</p>
+    </div>
+    <button class="icon-btn" (click)="cargar()">↺</button>
+  </div>
+
+  @if (cargando()) {
+    <div class="empty-state">
+      <p class="pulsing mono">loading_history()...</p>
+    </div>
+  }
+
+  @if (!cargando() && lista().length === 0) {
+    <div class="empty-state">
+      <div class="empty-state__icon">📭</div>
+      <p class="empty-state__title">Sin análisis aún</p>
+      <p class="empty-state__sub">Analiza tu primer código en la pestaña Analizar</p>
+      <button class="btn btn--primary" (click)="irDashboard()">▶ Ir a Analizar</button>
+    </div>
+  }
+
+  @if (!cargando() && lista().length > 0) {
+    <div class="hist-list">
+      @for (a of lista(); track a.id) {
+        <div class="hist-item card" (click)="detalle.set(a)">
+          <div class="hist-item__header">
+            <span class="mono" style="font-size:12px; color:var(--text-muted)">#{{ a.id }}</span>
+            <span class="badge" [ngClass]="scoreClass(a.puntuacion)">{{ a.puntuacion }}/100</span>
+            <button class="del-btn" (click)="eliminar(a, $event)">✕</button>
+          </div>
+          <pre class="hist-item__code">{{ preview(a.codigoFuente) }}</pre>
+          <div class="hist-item__footer">
+            <span style="font-size:11px; color:var(--text-muted)">{{ fecha(a.fechaAnalisis) }}</span>
+            <span class="mono" style="font-size:11px; color:var(--danger)">{{ a.totalProblemas }} issues</span>
+          </div>
+        </div>
+      }
+    </div>
+  }
+
+  <!-- Detail modal -->
+  @if (detalle()) {
+    <div class="modal-overlay" (click)="detalle.set(null)">
+      <div class="modal" (click)="$event.stopPropagation()">
+        <div class="modal__header">
+          <span class="mono">análisis #{{ detalle()!.id }}</span>
+          <button class="icon-btn" (click)="detalle.set(null)">✕</button>
+        </div>
+        <div class="modal__body">
+          <div class="modal__score-row">
+            <span class="modal__score" [ngClass]="scoreClass(detalle()!.puntuacion)">
+              {{ detalle()!.puntuacion }}/100
+            </span>
+            <span style="font-size:13px; color:var(--text-muted)">{{ detalle()!.totalProblemas }} issues</span>
+            <span style="font-size:11px; color:var(--text-muted)">{{ fecha(detalle()!.fechaAnalisis) }}</span>
+          </div>
+          @for (p of detalle()!.malasPracticas; track p.linea) {
+            <div class="issue-card card">
+              <div class="issue-card__header">
+                <span class="badge" [ngClass]="'badge--' + p.severidad.toLowerCase()">{{ sevLabel(p.severidad) }}</span>
+                <span class="mono" style="font-size:12px; color:var(--text-muted)">:{{ p.linea }}</span>
+              </div>
+              <p class="issue-card__tipo mono">{{ p.tipo }}</p>
+              <p class="issue-card__desc">{{ p.descripcion }}</p>
+              <p class="issue-card__fix"><span class="mono" style="color:var(--text-muted)">// fix → </span>{{ p.sugerencia }}</p>
+            </div>
+          }
+        </div>
+      </div>
+    </div>
+  }
+
+  <!-- Bottom Nav -->
+  <nav class="bottom-nav">
+    <div class="bottom-nav__items">
+      <button class="nav-item" (click)="irDashboard()">
+        <span class="nav-item__icon">⚡</span>
+        <span>Analizar</span>
+      </button>
+      <button class="nav-item active">
+        <span class="nav-item__icon">🕘</span>
+        <span>Historial</span>
+      </button>
+      @if (auth.esAdmin()) {
+        <button class="nav-item" (click)="irAdmin()">
+          <span class="nav-item__icon">🛡</span>
+          <span>Admin</span>
+        </button>
+      }
+      <button class="nav-item" (click)="logout()">
+        <span class="nav-item__icon">⏻</span>
+        <span>Salir</span>
+      </button>
+    </div>
+  </nav>
+
+</div>

@@ -1,0 +1,104 @@
+<div class="home-page">
+
+  <!-- Toast -->
+  @if (alerta()) {
+    <div class="toast" [ngClass]="'toast--' + alerta()!.tipo">
+      <span>{{ alerta()!.tipo === 'error' ? '✕' : alerta()!.tipo === 'success' ? '✓' : '!' }}</span>
+      {{ alerta()!.msg }}
+    </div>
+  }
+
+  <!-- Hero -->
+  <div class="hero">
+    <div class="hero__icon">⚙</div>
+    <h1 class="hero__title mono">skill_issue<br><span>analyser</span></h1>
+    <p class="hero__sub">Static analysis for Java code.</p>
+  </div>
+
+  <!-- Tabs -->
+  <div class="auth-tabs">
+    <button class="auth-tab" [class.active]="modo() === 'login'"    (click)="cambiarModo('login')">
+      $ login
+    </button>
+    <button class="auth-tab" [class.active]="modo() === 'registro'" (click)="cambiarModo('registro')">
+      $ register
+    </button>
+  </div>
+
+  <!-- Login form -->
+  @if (modo() === 'login') {
+    <div class="auth-form">
+      <div class="input-group">
+        <label>username</label>
+        <input class="input" type="text" autocomplete="username"
+               [(ngModel)]="loginUser" placeholder="tu_usuario" />
+      </div>
+      <div class="input-group">
+        <label>password</label>
+        <div class="pass-wrap">
+          <input class="input" [type]="mostrarPass() ? 'text' : 'password'"
+                 autocomplete="current-password"
+                 [(ngModel)]="loginPass" placeholder="••••••••"
+                 (keydown.enter)="login()" />
+          <button class="pass-toggle" (click)="mostrarPass.set(!mostrarPass())">
+            {{ mostrarPass() ? '🙈' : '👁' }}
+          </button>
+        </div>
+      </div>
+      <button class="btn btn--primary btn--full btn--lg" (click)="login()" [disabled]="cargando()">
+        @if (cargando()) { <span class="pulsing">connecting...</span> }
+        @else { ▶ run login() }
+      </button>
+    </div>
+  }
+
+  <!-- Registro form -->
+  @if (modo() === 'registro') {
+    <div class="auth-form">
+      <div class="form-row">
+        <div class="input-group">
+          <label>username *</label>
+          <input class="input" type="text" autocomplete="username"
+                 [(ngModel)]="regUser" placeholder="mi_usuario" />
+        </div>
+        <div class="input-group">
+          <label>password *</label>
+          <div class="pass-wrap">
+            <input class="input" [type]="mostrarPass() ? 'text' : 'password'"
+                   [(ngModel)]="regPass" placeholder="••••••••" />
+            <button class="pass-toggle" (click)="mostrarPass.set(!mostrarPass())">
+              {{ mostrarPass() ? '🙈' : '👁' }}
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="input-group">
+        <label>nombre completo *</label>
+        <input class="input" type="text" [(ngModel)]="regNombre" placeholder="Tu Nombre" />
+      </div>
+      <div class="input-group">
+        <label>correo *</label>
+        <input class="input" type="email" [(ngModel)]="regEmail" placeholder="correo@ejemplo.com" />
+      </div>
+      <div class="input-group">
+        <label>tipo de cuenta</label>
+        <div class="rol-selector">
+          <button class="rol-btn" [class.active]="regRol() === 'USUARIO'"
+                  (click)="regRol.set('USUARIO')">
+            👤 Usuario
+          </button>
+          <button class="rol-btn" [class.active]="regRol() === 'ADMIN'"
+                  (click)="regRol.set('ADMIN')">
+            🛡 Admin
+          </button>
+        </div>
+      </div>
+      <p class="pass-hint mono">8+ chars · 1 mayúscula · 1 número</p>
+      <button class="btn btn--primary btn--full btn--lg" (click)="registro()" [disabled]="cargando()">
+        @if (cargando()) { <span class="pulsing">processing...</span> }
+        @else { ▶ run register() }
+      </button>
+    </div>
+  }
+
+</div>

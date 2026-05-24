@@ -1,0 +1,2103 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>skillissueanalyser documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+          <script>
+              // --- Iframe navigation tracking for Template Playground ---
+              function sendCurrentUrlToParent() {
+                  if (window.parent && window.parent !== window) {
+                      window.parent.postMessage({
+                          type: 'compodoc-iframe-navigate',
+                          url: window.location.pathname + window.location.hash
+                      }, '*');
+                  }
+              }
+              window.addEventListener('hashchange', sendCurrentUrlToParent, false);
+              window.addEventListener('popstate', sendCurrentUrlToParent, false);
+              window.addEventListener('DOMContentLoaded', sendCurrentUrlToParent, false);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="../" class="navbar-brand">skillissueanalyser documentation</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="d-none d-md-block menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Components</li>
+  <li class="breadcrumb-item"
+  >
+  Dashboard</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" class="nav-link"
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li class="nav-item">
+            <a href="#templateData" class="nav-link"
+                role="tab" id="templateData-tab" data-bs-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li class="nav-item">
+            <a href="#styleData" class="nav-link"
+                role="tab" id="styleData-tab" data-bs-toggle="tab" data-link="style">Styles</a>
+        </li>
+        <li class="nav-item">
+            <a href="#tree" class="nav-link"
+                role="tab" id="tree-tab" data-bs-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>src/app/dashboard/dashboard.ts</code>
+</p>
+
+
+    <p class="comment">
+        <h3>Description</h3>
+    </p>
+    <p class="comment">
+        <p>Funcionalidades:</p>
+<ul>
+<li><strong>Analisis ZIP</strong>: carga y envia un archivo <code>.zip</code> al backend para su analisis.</li>
+<li><strong>Analisis GitHub</strong>: envia la URL de un repositorio publico al backend.</li>
+<li><strong>Historial</strong>: lista y gestiona los analisis previos del usuario.</li>
+<li><strong>Detalle</strong>: visualiza las malas practicas detectadas en un analisis especifico.</li>
+</ul>
+<p>Utiliza <code>ChangeDetectorRef</code> para forzar la deteccion de cambios en modo zoneless.</p>
+
+    </p>
+
+
+
+
+<section data-compodoc="block-metadata">
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover metadata">
+        <tbody>
+
+
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>app-dashboard</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">standalone</td>
+                <td class="col-md-9"><code>true</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">imports</td>
+                <td class="col-md-9">
+                                <code><a href="https://angular.io/api/common/CommonModule" target="_blank" >CommonModule</a></code>
+                                <code><a href="https://angular.io/api/forms/FormsModule" target="_blank" >FormsModule</a></code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">styleUrls</td>
+                <td class="col-md-9"><code>./dashboard.css</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./dashboard.html</code></td>
+            </tr>
+
+
+
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#alerta" >alerta</a>
+                            </li>
+                            <li>
+                                <a href="#archivoZip" >archivoZip</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#auth" >auth</a>
+                            </li>
+                            <li>
+                                <a href="#cargando" >cargando</a>
+                            </li>
+                            <li>
+                                <a href="#detalle" >detalle</a>
+                            </li>
+                            <li>
+                                <a href="#fuente" >fuente</a>
+                            </li>
+                            <li>
+                                <a href="#nombreZip" >nombreZip</a>
+                            </li>
+                            <li>
+                                <a href="#repoUrl" >repoUrl</a>
+                            </li>
+                            <li>
+                                <a href="#resultado" >resultado</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#router" >router</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#svc" >svc</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#timer" >timer</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#analizar" >analizar</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#analizarGithub" >analizarGithub</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#analizarZip" >analizarZip</a>
+                            </li>
+                            <li>
+                                <a href="#extraerError" >extraerError</a>
+                            </li>
+                            <li>
+                                <a href="#irAdmin" >irAdmin</a>
+                            </li>
+                            <li>
+                                <a href="#irHistorial" >irHistorial</a>
+                            </li>
+                            <li>
+                                <a href="#limpiar" >limpiar</a>
+                            </li>
+                            <li>
+                                <a href="#logout" >logout</a>
+                            </li>
+                            <li>
+                                <a href="#onFileChange" >onFileChange</a>
+                            </li>
+                            <li>
+                                <a href="#porSeveridad" >porSeveridad</a>
+                            </li>
+                            <li>
+                                <a href="#scoreClass" >scoreClass</a>
+                            </li>
+                            <li>
+                                <a href="#scoreMsg" >scoreMsg</a>
+                            </li>
+                            <li>
+                                <a href="#sevLabel" >sevLabel</a>
+                            </li>
+                            <li>
+                                <a href="#toast" >toast</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+
+
+
+
+
+    <section data-compodoc="block-methods">
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="analizar"></a>
+                    <span class="name">
+                        <span ><b>analizar</b></span>
+                        <a href="#analizar"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>analizar()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="102"
+                                    class="link-to-prism">src/app/dashboard/dashboard.ts:102</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Envia el archivo ZIP seleccionado al backend para su analisis.
+Construye un <code>FormData</code> con el campo <code>archivo</code> y llama a <a href="AnalisisService.analizarZip">AnalisisService.analizarZip</a>.
+Al completarse, refresca el historial automaticamente.</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="analizarGithub"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>analizarGithub</b></span>
+                        <a href="#analizarGithub"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>analizarGithub()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="120"
+                                    class="link-to-prism">src/app/dashboard/dashboard.ts:120</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="analizarZip"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>analizarZip</b></span>
+                        <a href="#analizarZip"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>analizarZip()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="107"
+                                    class="link-to-prism">src/app/dashboard/dashboard.ts:107</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="extraerError"></a>
+                    <span class="name">
+                        <span ><b>extraerError</b></span>
+                        <a href="#extraerError"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>extraerError(err: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>, fallback: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="65"
+                                    class="link-to-prism">src/app/dashboard/dashboard.ts:65</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>err</td>
+                                            <td>
+                                                            <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>fallback</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="irAdmin"></a>
+                    <span class="name">
+                        <span ><b>irAdmin</b></span>
+                        <a href="#irAdmin"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>irAdmin()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="152"
+                                    class="link-to-prism">src/app/dashboard/dashboard.ts:152</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="irHistorial"></a>
+                    <span class="name">
+                        <span ><b>irHistorial</b></span>
+                        <a href="#irHistorial"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>irHistorial()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="151"
+                                    class="link-to-prism">src/app/dashboard/dashboard.ts:151</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="limpiar"></a>
+                    <span class="name">
+                        <span ><b>limpiar</b></span>
+                        <a href="#limpiar"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>limpiar()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="90"
+                                    class="link-to-prism">src/app/dashboard/dashboard.ts:90</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Limpia el estado del panel de analisis ZIP:
+elimina el archivo seleccionado, el nombre y el resultado previo.</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="logout"></a>
+                    <span class="name">
+                        <span ><b>logout</b></span>
+                        <a href="#logout"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>logout()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="134"
+                                    class="link-to-prism">src/app/dashboard/dashboard.ts:134</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onFileChange"></a>
+                    <span class="name">
+                        <span ><b>onFileChange</b></span>
+                        <a href="#onFileChange"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>onFileChange(ev: <a href="https://angular.io/api/router/Event" target="_blank">Event</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="77"
+                                    class="link-to-prism">src/app/dashboard/dashboard.ts:77</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Maneja el evento de seleccion de archivo en el input de tipo file.
+Valida que el archivo tenga extension <code>.zip</code> antes de asignarlo.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>ev</td>
+                                            <td>
+                                                            <code><a href="https://angular.io/api/router/Event" target="_blank" >Event</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <ul>
+<li>Evento del input file con el archivo seleccionado por el usuario.</li>
+</ul>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="porSeveridad"></a>
+                    <span class="name">
+                        <span ><b>porSeveridad</b></span>
+                        <a href="#porSeveridad"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>porSeveridad(lista: <a href="../interfaces/MalaPractica.html" target="_self">MalaPractica[]</a>, s: <a href="../miscellaneous/typealiases.html#Severidad" target="_self">Severidad</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="149"
+                                    class="link-to-prism">src/app/dashboard/dashboard.ts:149</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>lista</td>
+                                            <td>
+                                                            <code><a href="../interfaces/MalaPractica.html" target="_self" >MalaPractica[]</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>s</td>
+                                            <td>
+                                                            <code><a href="../miscellaneous/typealiases.html#Severidad" target="_self" >Severidad</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="scoreClass"></a>
+                    <span class="name">
+                        <span ><b>scoreClass</b></span>
+                        <a href="#scoreClass"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>scoreClass(s: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="136"
+                                    class="link-to-prism">src/app/dashboard/dashboard.ts:136</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>s</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>&quot;score--critical&quot; | &quot;score--high&quot; | &quot;score--medium&quot; | &quot;score--ok&quot;</code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="scoreMsg"></a>
+                    <span class="name">
+                        <span ><b>scoreMsg</b></span>
+                        <a href="#scoreMsg"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>scoreMsg(s: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="142"
+                                    class="link-to-prism">src/app/dashboard/dashboard.ts:142</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>s</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>&quot;Certified disaster 🔥&quot; | &quot;Significant issues 😬&quot; | &quot;Some issues found 🤔&quot; | &quot;Looking clean! ✨&quot;</code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="sevLabel"></a>
+                    <span class="name">
+                        <span ><b>sevLabel</b></span>
+                        <a href="#sevLabel"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>sevLabel(s: <a href="../miscellaneous/typealiases.html#Severidad" target="_self">Severidad</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="148"
+                                    class="link-to-prism">src/app/dashboard/dashboard.ts:148</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>s</td>
+                                            <td>
+                                                            <code><a href="../miscellaneous/typealiases.html#Severidad" target="_self" >Severidad</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="toast"></a>
+                    <span class="name">
+                        <span ><b>toast</b></span>
+                        <a href="#toast"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>toast(tipo: <a href="../miscellaneous/typealiases.html#TipoAlerta" target="_self">TipoAlerta</a>, msg: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="59"
+                                    class="link-to-prism">src/app/dashboard/dashboard.ts:59</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>tipo</td>
+                                            <td>
+                                                            <code><a href="../miscellaneous/typealiases.html#TipoAlerta" target="_self" >TipoAlerta</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>msg</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+    <section data-compodoc="block-properties">
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="alerta"></a>
+                    <span class="name">
+                        <span ><b>alerta</b></span>
+                        <a href="#alerta"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>signal&lt;{ tipo: TipoAlerta; msg: string } | null&gt;(null)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="46" class="link-to-prism">src/app/dashboard/dashboard.ts:46</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="archivoZip"></a>
+                    <span class="name">
+                        <span ><b>archivoZip</b></span>
+                        <a href="#archivoZip"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>signal&lt;File | null&gt;(null)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="51" class="link-to-prism">src/app/dashboard/dashboard.ts:51</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="auth"></a>
+                    <span class="name">
+                            <span class="modifier">Readonly</span>
+                        <span ><b>auth</b></span>
+                        <a href="#auth"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>inject(AuthService)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="41" class="link-to-prism">src/app/dashboard/dashboard.ts:41</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="cargando"></a>
+                    <span class="name">
+                        <span ><b>cargando</b></span>
+                        <a href="#cargando"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>signal(false)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="45" class="link-to-prism">src/app/dashboard/dashboard.ts:45</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="detalle"></a>
+                    <span class="name">
+                        <span ><b>detalle</b></span>
+                        <a href="#detalle"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>signal&lt;MalaPractica | null&gt;(null)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="48" class="link-to-prism">src/app/dashboard/dashboard.ts:48</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="fuente"></a>
+                    <span class="name">
+                        <span ><b>fuente</b></span>
+                        <a href="#fuente"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>signal&lt;Fuente&gt;(&#x27;zip&#x27;)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="44" class="link-to-prism">src/app/dashboard/dashboard.ts:44</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="nombreZip"></a>
+                    <span class="name">
+                        <span ><b>nombreZip</b></span>
+                        <a href="#nombreZip"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>signal(&#x27;&#x27;)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="52" class="link-to-prism">src/app/dashboard/dashboard.ts:52</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="repoUrl"></a>
+                    <span class="name">
+                        <span ><b>repoUrl</b></span>
+                        <a href="#repoUrl"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;&#x27;</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="55" class="link-to-prism">src/app/dashboard/dashboard.ts:55</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="resultado"></a>
+                    <span class="name">
+                        <span ><b>resultado</b></span>
+                        <a href="#resultado"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>signal&lt;Analisis | null&gt;(null)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="47" class="link-to-prism">src/app/dashboard/dashboard.ts:47</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="router"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>router</b></span>
+                        <a href="#router"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>inject(Router)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="42" class="link-to-prism">src/app/dashboard/dashboard.ts:42</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="svc"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>svc</b></span>
+                        <a href="#svc"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>inject(AnalisisService)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="40" class="link-to-prism">src/app/dashboard/dashboard.ts:40</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="timer"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>timer</b></span>
+                        <a href="#timer"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="57" class="link-to-prism">src/app/dashboard/dashboard.ts:57</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+</section>
+
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, signal, inject } from &#x27;@angular/core&#x27;;
+import { CommonModule } from &#x27;@angular/common&#x27;;
+import { FormsModule } from &#x27;@angular/forms&#x27;;
+import { Router } from &#x27;@angular/router&#x27;;
+import { AuthService } from &#x27;../services/auth.service&#x27;;
+import { AnalisisService } from &#x27;../services/analisis.service&#x27;;
+import { Analisis, MalaPractica, Severidad, SEVERIDAD_LABEL } from &#x27;../models/analisis.model&#x27;;
+
+/** Pestanas disponibles en el dashboard. */
+type Fuente &#x3D; &#x27;zip&#x27; | &#x27;github&#x27;;
+
+/** Tipos de alerta para retroalimentacion visual. */
+type TipoAlerta &#x3D; &#x27;error&#x27; | &#x27;success&#x27; | &#x27;warning&#x27;;
+
+/**
+ * @class Dashboard
+ * @description Componente standalone del panel principal del usuario autenticado.
+ *
+ * Funcionalidades:
+ * - **Analisis ZIP**: carga y envia un archivo &#x60;.zip&#x60; al backend para su analisis.
+ * - **Analisis GitHub**: envia la URL de un repositorio publico al backend.
+ * - **Historial**: lista y gestiona los analisis previos del usuario.
+ * - **Detalle**: visualiza las malas practicas detectadas en un analisis especifico.
+ *
+ * Utiliza &#x60;ChangeDetectorRef&#x60; para forzar la deteccion de cambios en modo zoneless.
+ */
+@Component({
+  selector: &#x27;app-dashboard&#x27;,
+  standalone: true,
+  imports: [CommonModule, FormsModule],
+  templateUrl: &#x27;./dashboard.html&#x27;,
+  styleUrls: [&#x27;./dashboard.css&#x27;],
+})
+export class Dashboard {
+  private svc    &#x3D; inject(AnalisisService);
+  readonly auth  &#x3D; inject(AuthService);
+  private router &#x3D; inject(Router);
+
+  fuente      &#x3D; signal&lt;Fuente&gt;(&#x27;zip&#x27;);
+  cargando    &#x3D; signal(false);
+  alerta      &#x3D; signal&lt;{ tipo: TipoAlerta; msg: string } | null&gt;(null);
+  resultado   &#x3D; signal&lt;Analisis | null&gt;(null);
+  detalle     &#x3D; signal&lt;MalaPractica | null&gt;(null);
+
+  // ZIP
+  archivoZip  &#x3D; signal&lt;File | null&gt;(null);
+  nombreZip   &#x3D; signal(&#x27;&#x27;);
+
+  // GitHub
+  repoUrl &#x3D; &#x27;&#x27;;
+
+  private timer: any;
+
+  toast(tipo: TipoAlerta, msg: string) {
+    if (this.timer) clearTimeout(this.timer);
+    this.alerta.set({ tipo, msg });
+    this.timer &#x3D; setTimeout(() &#x3D;&gt; this.alerta.set(null), 4000);
+  }
+
+  extraerError(err: any, fallback: string): string {
+    if (typeof err.error &#x3D;&#x3D;&#x3D; &#x27;string&#x27; &amp;&amp; err.error.trim()) return err.error.trim();
+    if (err.status &#x3D;&#x3D;&#x3D; 0) return &#x27;No se puede conectar al servidor.&#x27;;
+    return fallback;
+  }
+
+  /**
+   * Maneja el evento de seleccion de archivo en el input de tipo file.
+   * Valida que el archivo tenga extension &#x60;.zip&#x60; antes de asignarlo.
+   *
+   * @param ev - Evento del input file con el archivo seleccionado por el usuario.
+   */
+  onFileChange(ev: Event) {
+    const f &#x3D; (ev.target as HTMLInputElement).files?.[0];
+    if (!f) return;
+    if (!f.name.endsWith(&#x27;.zip&#x27;)) { this.toast(&#x27;warning&#x27;, &#x27;Solo archivos .zip&#x27;); return; }
+    this.archivoZip.set(f);
+    this.nombreZip.set(f.name);
+    this.resultado.set(null);
+  }
+
+  /**
+   * Limpia el estado del panel de analisis ZIP:
+   * elimina el archivo seleccionado, el nombre y el resultado previo.
+   */
+  limpiar() {
+    this.archivoZip.set(null);
+    this.nombreZip.set(&#x27;&#x27;);
+    this.repoUrl &#x3D; &#x27;&#x27;;
+    this.resultado.set(null);
+  }
+
+  /**
+   * Envia el archivo ZIP seleccionado al backend para su analisis.
+   * Construye un &#x60;FormData&#x60; con el campo &#x60;archivo&#x60; y llama a {@link AnalisisService.analizarZip}.
+   * Al completarse, refresca el historial automaticamente.
+   */
+  analizar() {
+    if (this.fuente() &#x3D;&#x3D;&#x3D; &#x27;zip&#x27;) this.analizarZip();
+    else                         this.analizarGithub();
+  }
+
+  private analizarZip() {
+    const f &#x3D; this.archivoZip();
+    if (!f) { this.toast(&#x27;warning&#x27;, &#x27;Selecciona un archivo .zip&#x27;); return; }
+    this.cargando.set(true);
+    this.resultado.set(null);
+    const fd &#x3D; new FormData();
+    fd.append(&#x27;archivo&#x27;, f);
+    this.svc.analizarZip(fd).subscribe({
+      next: r &#x3D;&gt; { this.resultado.set(r); this.cargando.set(false); },
+      error: err &#x3D;&gt; { this.cargando.set(false); this.toast(&#x27;error&#x27;, this.extraerError(err, &#x27;Error al analizar.&#x27;)); },
+    });
+  }
+
+  private analizarGithub() {
+    if (!this.repoUrl.trim()) { this.toast(&#x27;warning&#x27;, &#x27;Ingresa la URL del repositorio.&#x27;); return; }
+    if (!this.repoUrl.startsWith(&#x27;https://github.com/&#x27;)) {
+      this.toast(&#x27;warning&#x27;, &#x27;Solo repos públicos de GitHub.&#x27;);
+      return;
+    }
+    this.cargando.set(true);
+    this.resultado.set(null);
+    this.svc.analizarGithub(this.repoUrl).subscribe({
+      next: r &#x3D;&gt; { this.resultado.set(r); this.cargando.set(false); },
+      error: err &#x3D;&gt; { this.cargando.set(false); this.toast(&#x27;error&#x27;, this.extraerError(err, &#x27;Error al analizar repo.&#x27;)); },
+    });
+  }
+
+  logout() { this.auth.cerrarSesion(); this.router.navigate([&#x27;/&#x27;]); }
+
+  scoreClass(s: number) {
+    if (s &gt;&#x3D; 70) return &#x27;score--critical&#x27;;
+    if (s &gt;&#x3D; 40) return &#x27;score--high&#x27;;
+    if (s &gt;&#x3D; 15) return &#x27;score--medium&#x27;;
+    return &#x27;score--ok&#x27;;
+  }
+  scoreMsg(s: number) {
+    if (s &gt;&#x3D; 70) return &#x27;Certified disaster 🔥&#x27;;
+    if (s &gt;&#x3D; 40) return &#x27;Significant issues 😬&#x27;;
+    if (s &gt;&#x3D; 15) return &#x27;Some issues found 🤔&#x27;;
+    return &#x27;Looking clean! ✨&#x27;;
+  }
+  sevLabel(s: Severidad) { return SEVERIDAD_LABEL[s]; }
+  porSeveridad(lista: MalaPractica[], s: Severidad) { return lista.filter(p &#x3D;&gt; p.severidad &#x3D;&#x3D;&#x3D; s); }
+
+  irHistorial() { this.router.navigate([&#x27;/historial&#x27;]); }
+  irAdmin()     { this.router.navigate([&#x27;/admin&#x27;]); }
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;div class&#x3D;&quot;page&quot;&gt;
+
+  &lt;!-- Toast --&gt;
+  @if (alerta()) {
+    &lt;div class&#x3D;&quot;toast&quot; [ngClass]&#x3D;&quot;&#x27;toast--&#x27; + alerta()!.tipo&quot;&gt;{{ alerta()!.msg }}&lt;/div&gt;
+  }
+
+  &lt;!-- Header --&gt;
+  &lt;div class&#x3D;&quot;dash-header&quot;&gt;
+    &lt;div&gt;
+      &lt;p class&#x3D;&quot;dash-header__greet&quot;&gt;Hola, &lt;strong&gt;{{ auth.username() }}&lt;/strong&gt;&lt;/p&gt;
+      &lt;p class&#x3D;&quot;dash-header__sub mono&quot;&gt;// analyze_code()&lt;/p&gt;
+    &lt;/div&gt;
+    &lt;div class&#x3D;&quot;dash-header__actions&quot;&gt;
+      @if (auth.esAdmin()) {
+        &lt;button class&#x3D;&quot;icon-btn&quot; (click)&#x3D;&quot;irAdmin()&quot; title&#x3D;&quot;Admin&quot;&gt;🛡&lt;/button&gt;
+      }
+      &lt;button class&#x3D;&quot;icon-btn&quot; (click)&#x3D;&quot;irHistorial()&quot; title&#x3D;&quot;Historial&quot;&gt;🕘&lt;/button&gt;
+      &lt;button class&#x3D;&quot;icon-btn&quot; (click)&#x3D;&quot;logout()&quot; title&#x3D;&quot;Logout&quot;&gt;⏻&lt;/button&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+
+  &lt;!-- Source tabs --&gt;
+  &lt;div class&#x3D;&quot;source-tabs card&quot;&gt;
+    &lt;button class&#x3D;&quot;source-tab&quot; [class.active]&#x3D;&quot;fuente() &#x3D;&#x3D;&#x3D; &#x27;zip&#x27;&quot;    (click)&#x3D;&quot;fuente.set(&#x27;zip&#x27;)&quot;&gt;
+      📦 ZIP
+    &lt;/button&gt;
+    &lt;button class&#x3D;&quot;source-tab&quot; [class.active]&#x3D;&quot;fuente() &#x3D;&#x3D;&#x3D; &#x27;github&#x27;&quot; (click)&#x3D;&quot;fuente.set(&#x27;github&#x27;)&quot;&gt;
+      🐙 GitHub
+    &lt;/button&gt;
+  &lt;/div&gt;
+
+  &lt;!-- ZIP Input --&gt;
+  @if (fuente() &#x3D;&#x3D;&#x3D; &#x27;zip&#x27;) {
+    &lt;div class&#x3D;&quot;upload-area card&quot; (click)&#x3D;&quot;fileInput.click()&quot;&gt;
+      &lt;input #fileInput type&#x3D;&quot;file&quot; accept&#x3D;&quot;.zip&quot; style&#x3D;&quot;display:none&quot; (change)&#x3D;&quot;onFileChange($event)&quot; /&gt;
+      @if (!archivoZip()) {
+        &lt;span class&#x3D;&quot;upload-area__icon&quot;&gt;📂&lt;/span&gt;
+        &lt;p class&#x3D;&quot;upload-area__title mono&quot;&gt;tap to select .zip&lt;/p&gt;
+        &lt;p class&#x3D;&quot;upload-area__hint&quot;&gt;Archivos Java únicamente&lt;/p&gt;
+      } @else {
+        &lt;span class&#x3D;&quot;upload-area__icon&quot;&gt;✅&lt;/span&gt;
+        &lt;p class&#x3D;&quot;upload-area__title mono&quot;&gt;{{ nombreZip() }}&lt;/p&gt;
+        &lt;p class&#x3D;&quot;upload-area__hint&quot;&gt;{{ (archivoZip()!.size / 1024).toFixed(1) }} KB&lt;/p&gt;
+      }
+    &lt;/div&gt;
+  }
+
+  &lt;!-- GitHub Input --&gt;
+  @if (fuente() &#x3D;&#x3D;&#x3D; &#x27;github&#x27;) {
+    &lt;div class&#x3D;&quot;github-input card&quot;&gt;
+      &lt;p class&#x3D;&quot;mono&quot; style&#x3D;&quot;color:var(--text-muted); font-size:12px; margin-bottom:8px;&quot;&gt;// repo_url&lt;/p&gt;
+      &lt;input class&#x3D;&quot;input&quot; type&#x3D;&quot;url&quot;
+             placeholder&#x3D;&quot;https://github.com/owner/repo&quot;
+             [(ngModel)]&#x3D;&quot;repoUrl&quot;
+             (keydown.enter)&#x3D;&quot;analizar()&quot; /&gt;
+    &lt;/div&gt;
+  }
+
+  &lt;!-- Action buttons --&gt;
+  &lt;div class&#x3D;&quot;action-row&quot;&gt;
+    &lt;button class&#x3D;&quot;btn btn--ghost&quot; (click)&#x3D;&quot;limpiar()&quot;&gt;clear&lt;/button&gt;
+    &lt;button class&#x3D;&quot;btn btn--primary&quot; style&#x3D;&quot;flex:1&quot; (click)&#x3D;&quot;analizar()&quot; [disabled]&#x3D;&quot;cargando()&quot;&gt;
+      @if (cargando()) { &lt;span class&#x3D;&quot;pulsing&quot;&gt;scanning...&lt;/span&gt; }
+      @else { ▶ run_analysis() }
+    &lt;/button&gt;
+  &lt;/div&gt;
+
+  &lt;!-- Scanning --&gt;
+  @if (cargando()) {
+    &lt;div class&#x3D;&quot;scanning card&quot;&gt;
+      &lt;div class&#x3D;&quot;scan-bar&quot;&gt;&lt;div class&#x3D;&quot;scan-fill&quot;&gt;&lt;/div&gt;&lt;/div&gt;
+      &lt;p class&#x3D;&quot;mono pulsing&quot; style&#x3D;&quot;text-align:center; color:var(--text-muted); font-size:13px;&quot;&gt;
+        analyzing_code()...
+      &lt;/p&gt;
+    &lt;/div&gt;
+  }
+
+  &lt;!-- Results --&gt;
+  @if (resultado() &amp;&amp; !cargando()) {
+    &lt;div class&#x3D;&quot;results&quot;&gt;
+
+      &lt;!-- Score card --&gt;
+      &lt;div class&#x3D;&quot;score-card card&quot; [ngClass]&#x3D;&quot;scoreClass(resultado()!.puntuacion)&quot;&gt;
+        &lt;div class&#x3D;&quot;score-card__left&quot;&gt;
+          &lt;p class&#x3D;&quot;mono&quot; style&#x3D;&quot;font-size:11px; color:var(--text-muted)&quot;&gt;skill_issue_score&lt;/p&gt;
+          &lt;p class&#x3D;&quot;score-num&quot;&gt;{{ resultado()!.puntuacion }}&lt;span style&#x3D;&quot;font-size:16px; color:var(--text-muted)&quot;&gt;/100&lt;/span&gt;&lt;/p&gt;
+          &lt;p style&#x3D;&quot;font-size:13px&quot;&gt;{{ scoreMsg(resultado()!.puntuacion) }}&lt;/p&gt;
+        &lt;/div&gt;
+        &lt;div class&#x3D;&quot;score-circle&quot; [ngClass]&#x3D;&quot;scoreClass(resultado()!.puntuacion)&quot;&gt;
+          &lt;span&gt;{{ resultado()!.totalProblemas }}&lt;/span&gt;
+          &lt;small&gt;issues&lt;/small&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+
+      &lt;!-- Severity chips --&gt;
+      &lt;div class&#x3D;&quot;sev-row&quot;&gt;
+        &lt;div class&#x3D;&quot;sev-chip sev-chip--critica&quot;&gt;
+          &lt;span&gt;{{ porSeveridad(resultado()!.malasPracticas, &#x27;CRITICA&#x27;).length }}&lt;/span&gt;
+          &lt;small&gt;Critical&lt;/small&gt;
+        &lt;/div&gt;
+        &lt;div class&#x3D;&quot;sev-chip sev-chip--alta&quot;&gt;
+          &lt;span&gt;{{ porSeveridad(resultado()!.malasPracticas, &#x27;ALTA&#x27;).length }}&lt;/span&gt;
+          &lt;small&gt;High&lt;/small&gt;
+        &lt;/div&gt;
+        &lt;div class&#x3D;&quot;sev-chip sev-chip--media&quot;&gt;
+          &lt;span&gt;{{ porSeveridad(resultado()!.malasPracticas, &#x27;MEDIA&#x27;).length }}&lt;/span&gt;
+          &lt;small&gt;Med&lt;/small&gt;
+        &lt;/div&gt;
+        &lt;div class&#x3D;&quot;sev-chip sev-chip--baja&quot;&gt;
+          &lt;span&gt;{{ porSeveridad(resultado()!.malasPracticas, &#x27;BAJA&#x27;).length }}&lt;/span&gt;
+          &lt;small&gt;Low&lt;/small&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+
+      &lt;!-- Issues list --&gt;
+      @for (p of resultado()!.malasPracticas; track p.linea) {
+        &lt;div class&#x3D;&quot;issue-card card&quot;&gt;
+          &lt;div class&#x3D;&quot;issue-card__header&quot;&gt;
+            &lt;span class&#x3D;&quot;badge&quot; [ngClass]&#x3D;&quot;&#x27;badge--&#x27; + p.severidad.toLowerCase()&quot;&gt;{{ sevLabel(p.severidad) }}&lt;/span&gt;
+            &lt;span class&#x3D;&quot;mono&quot; style&#x3D;&quot;font-size:12px; color:var(--text-muted)&quot;&gt;:{{ p.linea }}&lt;/span&gt;
+          &lt;/div&gt;
+          &lt;p class&#x3D;&quot;issue-card__tipo mono&quot;&gt;{{ p.tipo }}&lt;/p&gt;
+          &lt;p class&#x3D;&quot;issue-card__desc&quot;&gt;{{ p.descripcion }}&lt;/p&gt;
+          &lt;p class&#x3D;&quot;issue-card__fix&quot;&gt;&lt;span class&#x3D;&quot;mono&quot; style&#x3D;&quot;color:var(--text-muted)&quot;&gt;// fix → &lt;/span&gt;{{ p.sugerencia }}&lt;/p&gt;
+        &lt;/div&gt;
+      }
+
+      @if (resultado()!.malasPracticas.length &#x3D;&#x3D;&#x3D; 0) {
+        &lt;div class&#x3D;&quot;empty-state&quot;&gt;
+          &lt;div class&#x3D;&quot;empty-state__icon&quot;&gt;✨&lt;/div&gt;
+          &lt;p class&#x3D;&quot;empty-state__title&quot;&gt;no_issues_found()&lt;/p&gt;
+          &lt;p class&#x3D;&quot;empty-state__sub&quot;&gt;Tu código está limpio.&lt;/p&gt;
+        &lt;/div&gt;
+      }
+    &lt;/div&gt;
+  }
+
+  &lt;!-- Bottom Nav --&gt;
+  &lt;nav class&#x3D;&quot;bottom-nav&quot;&gt;
+    &lt;div class&#x3D;&quot;bottom-nav__items&quot;&gt;
+      &lt;button class&#x3D;&quot;nav-item active&quot;&gt;
+        &lt;span class&#x3D;&quot;nav-item__icon&quot;&gt;⚡&lt;/span&gt;
+        &lt;span&gt;Analizar&lt;/span&gt;
+      &lt;/button&gt;
+      &lt;button class&#x3D;&quot;nav-item&quot; (click)&#x3D;&quot;irHistorial()&quot;&gt;
+        &lt;span class&#x3D;&quot;nav-item__icon&quot;&gt;🕘&lt;/span&gt;
+        &lt;span&gt;Historial&lt;/span&gt;
+      &lt;/button&gt;
+      @if (auth.esAdmin()) {
+        &lt;button class&#x3D;&quot;nav-item&quot; (click)&#x3D;&quot;irAdmin()&quot;&gt;
+          &lt;span class&#x3D;&quot;nav-item__icon&quot;&gt;🛡&lt;/span&gt;
+          &lt;span&gt;Admin&lt;/span&gt;
+        &lt;/button&gt;
+      }
+      &lt;button class&#x3D;&quot;nav-item&quot; (click)&#x3D;&quot;logout()&quot;&gt;
+        &lt;span class&#x3D;&quot;nav-item__icon&quot;&gt;⏻&lt;/span&gt;
+        &lt;span&gt;Salir&lt;/span&gt;
+      &lt;/button&gt;
+    &lt;/div&gt;
+  &lt;/nav&gt;
+
+&lt;/div&gt;
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="styleData">
+                <p class="comment">
+                    <code>./dashboard.css</code>
+                </p>
+                <pre class="line-numbers"><code class="language-scss">.dash-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 16px 8px;
+}
+.dash-header__greet { font-size: 16px; font-weight: 600; }
+.dash-header__sub   { font-size: 12px; color: var(--text-muted); margin-top: 2px; }
+.dash-header__actions { display: flex; gap: 8px; }
+
+.icon-btn {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.source-tabs {
+  display: flex;
+  gap: 8px;
+  margin: 12px 16px;
+  padding: 6px;
+}
+.source-tab {
+  flex: 1;
+  padding: 12px;
+  border: none;
+  background: transparent;
+  color: var(--text-muted);
+  font-size: 14px;
+  font-weight: 500;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: all .15s;
+  -webkit-tap-highlight-color: transparent;
+}
+.source-tab.active { background: var(--accent); color: #fff; }
+
+.upload-area {
+  margin: 0 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 32px 16px;
+  border: 2px dashed var(--border);
+  text-align: center;
+  cursor: pointer;
+  transition: border-color .15s;
+  -webkit-tap-highlight-color: transparent;
+}
+.upload-area:active { border-color: var(--accent); }
+.upload-area__icon  { font-size: 36px; }
+.upload-area__title { font-size: 14px; color: var(--text-secondary); }
+.upload-area__hint  { font-size: 12px; color: var(--text-muted); }
+
+.github-input { margin: 0 16px; }
+
+.action-row {
+  display: flex;
+  gap: 10px;
+  padding: 12px 16px;
+}
+
+.scanning {
+  margin: 0 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.scan-bar {
+  height: 4px;
+  background: var(--border);
+  border-radius: 99px;
+  overflow: hidden;
+}
+.scan-fill {
+  height: 100%;
+  background: var(--accent);
+  border-radius: 99px;
+  animation: scanAnim 1.4s ease infinite;
+}
+@keyframes scanAnim {
+  0%   { width: 0%; margin-left: 0; }
+  50%  { width: 70%; margin-left: 15%; }
+  100% { width: 0%; margin-left: 100%; }
+}
+
+.results { padding: 0 16px; display: flex; flex-direction: column; gap: 12px; }
+
+.score-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.score-card__left { display: flex; flex-direction: column; gap: 4px; }
+.score-num { font-size: 36px; font-weight: 700; }
+
+.score-circle {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  border: 3px solid currentColor;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.score-circle span { font-size: 20px; font-weight: 700; line-height: 1; }
+.score-circle small { font-size: 10px; color: var(--text-muted); }
+
+.sev-row { display: flex; gap: 8px; }
+.sev-chip {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px 6px;
+  border-radius: var(--radius-sm);
+  border: 1px solid;
+  gap: 2px;
+}
+.sev-chip span  { font-size: 18px; font-weight: 700; }
+.sev-chip small { font-size: 10px; opacity: .8; }
+.sev-chip--critica { background: rgba(239,68,68,.15);  border-color: rgba(239,68,68,.3);  color: #ff6b6b; }
+.sev-chip--alta    { background: rgba(239,68,68,.1);   border-color: rgba(239,68,68,.2);  color: var(--danger); }
+.sev-chip--media   { background: rgba(245,158,11,.1);  border-color: rgba(245,158,11,.2); color: var(--warning); }
+.sev-chip--baja    { background: rgba(34,197,94,.1);   border-color: rgba(34,197,94,.2);  color: var(--success); }
+
+.issue-card { display: flex; flex-direction: column; gap: 6px; }
+.issue-card__header { display: flex; align-items: center; justify-content: space-between; }
+.issue-card__tipo   { font-size: 13px; color: var(--text-secondary); }
+.issue-card__desc   { font-size: 14px; color: var(--text-primary); line-height: 1.4; }
+.issue-card__fix    { font-size: 12px; color: var(--text-muted); line-height: 1.4; }
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis-network.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><div class="page">  <!-- Toast -->  @if (alerta()) {    <div class="toast" [ngClass]="\'toast--\' + alerta()!.tipo">{{ alerta()!.msg }}</div>  }  <!-- Header -->  <div class="dash-header">    <div>      <p class="dash-header__greet">Hola, <strong>{{ auth.username() }}</strong></p>      <p class="dash-header__sub mono">// analyze_code()</p>    </div>    <div class="dash-header__actions">      @if (auth.esAdmin()) {        <button class="icon-btn" (click)="irAdmin()" title="Admin">🛡</button>      }      <button class="icon-btn" (click)="irHistorial()" title="Historial">🕘</button>      <button class="icon-btn" (click)="logout()" title="Logout">⏻</button>    </div>  </div>  <!-- Source tabs -->  <div class="source-tabs card">    <button class="source-tab" [class.active]="fuente() === \'zip\'"    (click)="fuente.set(\'zip\')">      📦 ZIP    </button>    <button class="source-tab" [class.active]="fuente() === \'github\'" (click)="fuente.set(\'github\')">      🐙 GitHub    </button>  </div>  <!-- ZIP Input -->  @if (fuente() === \'zip\') {    <div class="upload-area card" (click)="fileInput.click()">      <input #fileInput type="file" accept=".zip" style="display:none" (change)="onFileChange($event)" />      @if (!archivoZip()) {        <span class="upload-area__icon">📂</span>        <p class="upload-area__title mono">tap to select .zip</p>        <p class="upload-area__hint">Archivos Java únicamente</p>      } @else {        <span class="upload-area__icon">✅</span>        <p class="upload-area__title mono">{{ nombreZip() }}</p>        <p class="upload-area__hint">{{ (archivoZip()!.size / 1024).toFixed(1) }} KB</p>      }    </div>  }  <!-- GitHub Input -->  @if (fuente() === \'github\') {    <div class="github-input card">      <p class="mono" style="color:var(--text-muted); font-size:12px; margin-bottom:8px;">// repo_url</p>      <input class="input" type="url"             placeholder="https://github.com/owner/repo"             [(ngModel)]="repoUrl"             (keydown.enter)="analizar()" />    </div>  }  <!-- Action buttons -->  <div class="action-row">    <button class="btn btn--ghost" (click)="limpiar()">clear</button>    <button class="btn btn--primary" style="flex:1" (click)="analizar()" [disabled]="cargando()">      @if (cargando()) { <span class="pulsing">scanning...</span> }      @else { ▶ run_analysis() }    </button>  </div>  <!-- Scanning -->  @if (cargando()) {    <div class="scanning card">      <div class="scan-bar"><div class="scan-fill"></div></div>      <p class="mono pulsing" style="text-align:center; color:var(--text-muted); font-size:13px;">        analyzing_code()...      </p>    </div>  }  <!-- Results -->  @if (resultado() && !cargando()) {    <div class="results">      <!-- Score card -->      <div class="score-card card" [ngClass]="scoreClass(resultado()!.puntuacion)">        <div class="score-card__left">          <p class="mono" style="font-size:11px; color:var(--text-muted)">skill_issue_score</p>          <p class="score-num">{{ resultado()!.puntuacion }}<span style="font-size:16px; color:var(--text-muted)">/100</span></p>          <p style="font-size:13px">{{ scoreMsg(resultado()!.puntuacion) }}</p>        </div>        <div class="score-circle" [ngClass]="scoreClass(resultado()!.puntuacion)">          <span>{{ resultado()!.totalProblemas }}</span>          <small>issues</small>        </div>      </div>      <!-- Severity chips -->      <div class="sev-row">        <div class="sev-chip sev-chip--critica">          <span>{{ porSeveridad(resultado()!.malasPracticas, \'CRITICA\').length }}</span>          <small>Critical</small>        </div>        <div class="sev-chip sev-chip--alta">          <span>{{ porSeveridad(resultado()!.malasPracticas, \'ALTA\').length }}</span>          <small>High</small>        </div>        <div class="sev-chip sev-chip--media">          <span>{{ porSeveridad(resultado()!.malasPracticas, \'MEDIA\').length }}</span>          <small>Med</small>        </div>        <div class="sev-chip sev-chip--baja">          <span>{{ porSeveridad(resultado()!.malasPracticas, \'BAJA\').length }}</span>          <small>Low</small>        </div>      </div>      <!-- Issues list -->      @for (p of resultado()!.malasPracticas; track p.linea) {        <div class="issue-card card">          <div class="issue-card__header">            <span class="badge" [ngClass]="\'badge--\' + p.severidad.toLowerCase()">{{ sevLabel(p.severidad) }}</span>            <span class="mono" style="font-size:12px; color:var(--text-muted)">:{{ p.linea }}</span>          </div>          <p class="issue-card__tipo mono">{{ p.tipo }}</p>          <p class="issue-card__desc">{{ p.descripcion }}</p>          <p class="issue-card__fix"><span class="mono" style="color:var(--text-muted)">// fix → </span>{{ p.sugerencia }}</p>        </div>      }      @if (resultado()!.malasPracticas.length === 0) {        <div class="empty-state">          <div class="empty-state__icon">✨</div>          <p class="empty-state__title">no_issues_found()</p>          <p class="empty-state__sub">Tu código está limpio.</p>        </div>      }    </div>  }  <!-- Bottom Nav -->  <nav class="bottom-nav">    <div class="bottom-nav__items">      <button class="nav-item active">        <span class="nav-item__icon">⚡</span>        <span>Analizar</span>      </button>      <button class="nav-item" (click)="irHistorial()">        <span class="nav-item__icon">🕘</span>        <span>Historial</span>      </button>      @if (auth.esAdmin()) {        <button class="nav-item" (click)="irAdmin()">          <span class="nav-item__icon">🛡</span>          <span>Admin</span>        </button>      }      <button class="nav-item" (click)="logout()">        <span class="nav-item__icon">⏻</span>        <span>Salir</span>      </button>    </div>  </nav></div></div>'
+    var COMPONENTS = [{'name': 'Admin', 'selector': 'app-admin'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'Dashboard', 'selector': 'app-dashboard'},{'name': 'Historial', 'selector': 'app-historial'},{'name': 'Home', 'selector': 'app-home'}];
+    var DIRECTIVES = [];
+    var ACTUAL_COMPONENT = {'name': 'Dashboard'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'Dashboard.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>
